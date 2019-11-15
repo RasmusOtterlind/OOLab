@@ -4,9 +4,11 @@ import java.awt.*;
 
 public class ScaniaTruck extends Vehicle implements IFlatbed {
     private double flatBedAngle = 0;
+
     ScaniaTruck() {
         super(2, 110, 0, Color.BLACK, "ScaniaTruck",0.2);
     }
+
     public double getFlatBedAngle() {
         return flatBedAngle;
     }
@@ -23,11 +25,15 @@ public class ScaniaTruck extends Vehicle implements IFlatbed {
 
     @Override
     public double speedFactor() {
-        return getEnginePower() * 0.01;
+        if (isLowest()) {
+            return getEnginePower() * 0.01;
+        }
+        return 0;
     }
 
     @Override
     public void raiseFlatBed() { if(flatBedAngle<70 && getCurrentSpeed()==0){ flatBedAngle += 5; } }
+
     @Override
     public void lowerFlatBed() { if(flatBedAngle>0){ flatBedAngle -= 5; } }
 
