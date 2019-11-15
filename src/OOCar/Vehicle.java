@@ -16,6 +16,14 @@ public abstract class Vehicle implements Movable{
      private double direction;
      private double turnSpeed = 0.2;
 
+    Vehicle(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, double turnSpeed) {
+        this.nrDoors = nrDoors;
+        this.enginePower = enginePower;
+        this.currentSpeed = currentSpeed;
+        this.color = color;
+        this.modelName = modelName;
+        this.turnSpeed = turnSpeed;
+    }
     private void setCurrentSpeed(double currentSpeed) {
         this.currentSpeed = currentSpeed;
     }
@@ -25,6 +33,7 @@ public abstract class Vehicle implements Movable{
     public Color getColor(){ return color; }
     public double getX(){return x;}
     public double getY(){return y;}
+
 
     /**
      * Start's the engine with a bit of speed
@@ -96,15 +105,6 @@ public abstract class Vehicle implements Movable{
         if(amount>=0 && amount<=1){
             decrementSpeed(amount);
         }
-    }
-
-    Vehicle(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, double turnSpeed) {
-        this.nrDoors = nrDoors;
-        this.enginePower = enginePower;
-        this.currentSpeed = currentSpeed;
-        this.color = color;
-        this.modelName = modelName;
-        this.turnSpeed = turnSpeed;
     }
 
 }
