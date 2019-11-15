@@ -103,4 +103,18 @@ public class VehicleTest {
         t.setColor(Color.red);
         assertTrue(t.getColor() == Color.red);
     }
+    @Test
+    public void turbo() {
+        Saab95 sab1 = new Saab95();
+        sab1.setTurboOn();
+        startEngine();
+        sab1.gas(1);
+        sab1.move();
+        Saab95 sab2 = new Saab95();
+        sab2.setTurboOff();
+        startEngine();
+        sab2.gas(1);
+        sab2.move();
+        assertTrue(sab1.getX()>sab2.getX());
+    }
 }

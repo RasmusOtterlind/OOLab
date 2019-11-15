@@ -6,16 +6,52 @@ import java.awt.*;
  * the abstract class vehicle with the basic characteristics of a car
  */
 public abstract class Vehicle implements Movable{
+    /**
+     * Number of doors on the vehicle
+     */
      private int nrDoors; // Number of doors on the car
+    /**
+     * This determines the max speed of the vehicle
+     */
      private double enginePower; // Engine power of the car
+    /**
+     * The speed of the vehicle used when you move it
+     */
      private double currentSpeed; // The current speed of the car
+    /**
+     * The color of the vehicle
+     */
      private Color color; // Color of the car
+    /**
+     * the name of the vehicle
+     */
      private String modelName; // The car model name
+    /**
+     * The x coordinate for the vehicle
+     */
      private double x;
+    /**
+     * The x coordinate for the vehicle
+     */
      private double y;
-     private double direction;
+    /**
+     * The direction the vehicle is facing used in trigonometrical ways with Sin & Cos
+     */
+    private double direction;
+    /**
+     * the speed that the vehicle turns with
+     */
      private double turnSpeed = 0.2;
 
+    /**
+     * The Constructor takes all the parameters mentioned.
+     * @param nrDoors
+     * @param enginePower
+     * @param currentSpeed
+     * @param color
+     * @param modelName
+     * @param turnSpeed
+     */
     Vehicle(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, double turnSpeed) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
@@ -79,7 +115,7 @@ public abstract class Vehicle implements Movable{
     }
 
     /**
-     *
+     * An abstract method that requires double as return value used when increasing speed
      * @return
      */
     public abstract double speedFactor();
