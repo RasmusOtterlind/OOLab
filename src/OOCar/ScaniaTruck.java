@@ -9,20 +9,6 @@ public class ScaniaTruck extends Vehicle implements IFlatbed {
         super(2, 110, 0, Color.BLACK, "ScaniaTruck",0.2);
     }
 
-    public double getFlatBedAngle() {
-        return flatBedAngle;
-    }
-
-    public void setFlatBedAngle(double flatBedAngle) {
-        if(flatBedAngle > 70){
-            flatBedAngle = 70;
-        }
-        else if(flatBedAngle<0){
-            flatBedAngle = 0;
-        }
-        this.flatBedAngle = flatBedAngle;
-    }
-
     @Override
     public double speedFactor() {
         if (isLowest()) {
@@ -42,5 +28,19 @@ public class ScaniaTruck extends Vehicle implements IFlatbed {
 
     @Override
     public boolean isLowest() { return flatBedAngle<=0; }
+
+    public double getFlatBedAngle() {
+        return flatBedAngle;
+    }
+
+    public void setFlatBedAngle(double flatBedAngle) {
+        if(flatBedAngle > 70){
+            flatBedAngle = 70;
+        }
+        else if(flatBedAngle<0){
+            flatBedAngle = 0;
+        }
+        this.flatBedAngle = flatBedAngle;
+    }
 
 }

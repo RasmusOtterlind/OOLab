@@ -2,24 +2,36 @@ package OOCar;
 
 import java.awt.*;
 
-public class TransportTruck extends Vehicle{
+public class TransportTruck extends Vehicle implements IFlatbed{
+    private double flatBedAngle = 0;
+    private TruckRampHelper truckRampHelper = new TruckRampHelper(1, 100, 0);
 
-    /**
-     * The Constructor takes all the parameters mentioned.
-     *
-     * @param nrDoors
-     * @param enginePower
-     * @param currentSpeed
-     * @param color
-     * @param modelName
-     * @param turnSpeed
-     */
-    TransportTruck(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, double turnSpeed) {
-        super(nrDoors, enginePower, currentSpeed, color, modelName, turnSpeed);
+    TransportTruck() {
+        super(2, 200, 0, Color.magenta, "TransportTruck-2000", 0.05);
+    }
+
+    public double speedFactor() {
+        return getEnginePower() * 0.003;
+
     }
 
     @Override
-    public double speedFactor() {
-        return 0;
+    public void raiseFlatBed() {
+        truckRampHelper.raiseFlatBed(getCurrentSpeed());
+    }
+
+    @Override
+    public void lowerFlatBed() {
+
+    }
+
+    @Override
+    public boolean isMax() {
+        return false;
+    }
+
+    @Override
+    public boolean isLowest() {
+        return false;
     }
 }
