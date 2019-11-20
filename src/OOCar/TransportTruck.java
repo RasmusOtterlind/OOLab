@@ -10,7 +10,7 @@ public class TransportTruck extends Vehicle implements IFlatbed, IStorage {
         super(2, 200, 0, Color.magenta, "TransportTruck-2000", 0.05,10);
     }
 
-    private void moveStorage() {
+    void moveStorage() {
         storage.moveStorage(getX(), getY(), getDirection());
     }
 
@@ -30,5 +30,4 @@ public class TransportTruck extends Vehicle implements IFlatbed, IStorage {
     public boolean isMax() {return flatbed.isMax();}
 
     public boolean isLowest() {return flatbed.isLowest();}
-    TransportTruck t = new TransportTruck();
 }

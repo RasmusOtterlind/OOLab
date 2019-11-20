@@ -1,4 +1,4 @@
 package OOCar;
 
-public interface IStorage {
+interface IStorage {
 }
