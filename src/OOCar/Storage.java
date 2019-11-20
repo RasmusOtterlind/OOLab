@@ -8,7 +8,9 @@ class Storage {
     enum UnloadOrder {
         firstInFirstOut, lastInFirstOut, selected;
     }
-    private int maxSpace;
+    private double maxSpace;
+    private double largestLoadingSize = 3.0;
+    private double currentFillAmount = 0;
     private UnloadOrder unloadOrder;
     private List<Vehicle> currentStorage = new ArrayList<>();
 
@@ -18,8 +20,9 @@ class Storage {
     }
 
     void addToStorage(Vehicle vehicle) {
-        if (currentStorage.size() < maxSpace && vehicle.getSize() <= 3.0) {
+        if (currentFillAmount + vehicle.getSize() <= maxSpace && vehicle.getSize() <= largestLoadingSize) {
             currentStorage.add(vehicle);
+            currentFillAmount += vehicle.getSize();
         }
     }
 
