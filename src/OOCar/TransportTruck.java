@@ -20,7 +20,10 @@ public class TransportTruck extends Vehicle implements IFlatbed, IStorage {
 
     @Override
     public double speedFactor() {
+        if(isMax()){
         return getEnginePower() * 0.003;
+        }
+        return 0;
     }
 
     public void raiseFlatBed() {
