@@ -2,16 +2,12 @@ package OOCar;
 
 import java.awt.*;
 
-public class TransportTruck extends Vehicle implements IFlatbed, IStorage {
+public class TransportTruck extends Truck implements IFlatbed, IStorage {
     private Flatbed flatbed = new Flatbed(1, 100, 0);
     private Storage storage = new Storage(10, Storage.UnloadOrder.firstInFirstOut);
 
     TransportTruck() {
-        super(2, 200, 0, Color.magenta, "TransportTruck-2000", 0.05);
-    }
-
-    private void moveStorage() {
-        storage.moveStorage(getX(), getY(), getDirection());
+        super(2, 200, 0, Color.magenta, "TransportTruck-2000", 0.05, new Storage(10, Storage.UnloadOrder.firstInFirstOut));
     }
 
     @Override
