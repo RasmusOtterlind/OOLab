@@ -86,6 +86,22 @@ public abstract class Vehicle implements Movable{
         y += getCurrentSpeed()* Math.sin(direction);
     }
 
+    public double getDirection() {
+        return direction;
+    }
+
+    /**
+     * Sets the vehicles position to be the same as the storage it's inside.
+     * @param x
+     * @param y
+     * @param direction
+     */
+    void followStorage(double x, double y, double direction) {
+        this.x = x;
+        this.y = y;
+        this.direction = direction;
+    }
+
     /**
      * changes the direction the vehicle is facing to the left
      */
