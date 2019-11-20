@@ -3,7 +3,7 @@ package OOCar;
 import java.awt.*;
 
 public class TransportTruck extends Vehicle implements IFlatbed, IStorage {
-    private Flatbed flatbed = new Flatbed(1, 100, 0);
+    private Flatbed flatbed = new Flatbed(100, 100, 0);
     private Storage storage = new Storage(10, Storage.UnloadOrder.firstInFirstOut);
 
     TransportTruck() {
