@@ -18,7 +18,7 @@ class Storage {
     }
 
     void addToStorage(Vehicle vehicle) {
-        if (currentStorage.size() < maxSpace) {
+        if (currentStorage.size() < maxSpace && vehicle.getSize() <= 3.0) {
             currentStorage.add(vehicle);
         }
     }
