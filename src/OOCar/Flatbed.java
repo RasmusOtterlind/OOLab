@@ -19,7 +19,7 @@ class Flatbed {
     }
 
     void lowerFlatBed(double currentSpeed) {
-        if(flatBedAngle>0) {
+        if(flatBedAngle>0 && currentSpeed <= maxSpeedLock) {
             setFlatBedAngle(-flatBedMovementSpeed); }
     }
 
