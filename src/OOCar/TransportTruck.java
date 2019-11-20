@@ -30,4 +30,5 @@ public class TransportTruck extends Vehicle implements IFlatbed, IStorage {
     public boolean isMax() {return flatbed.isMax();}
 
     public boolean isLowest() {return flatbed.isLowest();}
+    TransportTruck t = new TransportTruck();
 }
