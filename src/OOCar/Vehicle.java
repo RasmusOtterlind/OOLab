@@ -42,10 +42,6 @@ public abstract class Vehicle implements Movable{
      * How fast the vehicle turns
      */
      private double turnSpeed = 0.2;
-    /**
-     * Is the vehicle currently in storage?
-     */
-     public boolean isInStorage = false;
 
     /**
      * The Constructor takes all the parameters mentioned.
@@ -85,10 +81,8 @@ public abstract class Vehicle implements Movable{
      * Moves the vehicle
      */
     public void move(){
-        if (!isInStorage) {
             x += getCurrentSpeed()* Math.cos(direction);
             y += getCurrentSpeed()* Math.sin(direction);
-        }
     }
 
     /**
@@ -98,7 +92,6 @@ public abstract class Vehicle implements Movable{
      * @param direction
      */
     void followStorage(double x, double y, double direction) {
-        if ()
         this.x = x;
         this.y = y;
         this.direction = direction;
