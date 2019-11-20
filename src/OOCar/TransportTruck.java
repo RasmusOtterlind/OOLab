@@ -11,7 +11,7 @@ public class TransportTruck extends Vehicle implements IFlatbed, IStorage {
     }
 
     private void moveStorage() {
-        storage.moveWithStorage(getX(), getY(), getDirection());
+        storage.moveStorage(getX(), getY(), getDirection());
     }
 
     @Override

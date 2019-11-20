@@ -37,8 +37,8 @@ class Storage {
     }
 
     void moveStorage(double x, double y, double direction) {
-        for (Vehicle type : currentStorage) {
-            type.followStorage(x, y, direction);
+        for (Vehicle vehicle : currentStorage) {
+            vehicle.followStorage(x, y, direction);
         }
     }
 }
