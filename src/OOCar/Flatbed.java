@@ -13,7 +13,7 @@ class Flatbed {
     }
 
     void raiseFlatBed(double currentSpeed) {
-        if(flatBedAngle < flatBedMaxAngle && currentSpeed == maxSpeedLock) {
+        if(flatBedAngle < flatBedMaxAngle && currentSpeed <= maxSpeedLock) {
             setFlatBedAngle(flatBedMovementSpeed);
         }
     }
@@ -28,12 +28,17 @@ class Flatbed {
     boolean isLowest() { return flatBedAngle<=0; }
 
     private void setFlatBedAngle(double flatBedAngle) {
-        if(flatBedAngle > flatBedMaxAngle){
+        if(this.flatBedAngle+flatBedAngle >= flatBedMaxAngle){
             flatBedAngle = flatBedMaxAngle;
+            this.flatBedAngle = flatBedAngle;
         }
-        else if(flatBedAngle<0){
+        else if(this.flatBedAngle+flatBedAngle<=0){
             flatBedAngle = 0;
+            this.flatBedAngle = flatBedAngle;
         }
-        this.flatBedAngle = flatBedAngle;
+        else{
+            this.flatBedAngle += flatBedAngle;
+        }
+
     }
 }
