@@ -2,36 +2,27 @@ package OOCar;
 
 import java.awt.*;
 
-public class TransportTruck extends Vehicle implements IFlatbed{
-    private double flatBedAngle = 0;
-    private TruckRampHelper truckRampHelper = new TruckRampHelper(1, 100, 0);
+public class TransportTruck extends Vehicle implements IFlatbed {
+    private Flatbed flatbed = new Flatbed(1, 100, 0);
 
     TransportTruck() {
         super(2, 200, 0, Color.magenta, "TransportTruck-2000", 0.05);
     }
 
+    @Override
     public double speedFactor() {
         return getEnginePower() * 0.003;
-
     }
 
-    @Override
     public void raiseFlatBed() {
-        truckRampHelper.raiseFlatBed(getCurrentSpeed());
+        flatbed.raiseFlatBed(getCurrentSpeed());
     }
 
-    @Override
     public void lowerFlatBed() {
-
+        flatbed.lowerFlatBed(getCurrentSpeed());
     }
 
-    @Override
-    public boolean isMax() {
-        return false;
-    }
+    public boolean isMax() {return flatbed.isMax();}
 
-    @Override
-    public boolean isLowest() {
-        return false;
-    }
+    public boolean isLowest() {return flatbed.isLowest();}
 }
