@@ -6,42 +6,46 @@ import java.awt.*;
  * the abstract class vehicle with the basic characteristics of a car
  */
 public abstract class Vehicle implements Movable{
-    /**
+     /**
      * Number of doors on the vehicle
      */
      private int nrDoors; // Number of doors on the car
-    /**
+     /**
      * This determines the max speed of the vehicle
      */
      private double enginePower; // Engine power of the car
-    /**
+     /**
      * The speed of the vehicle used when you move it
      */
      private double currentSpeed; // The current speed of the car
-    /**
+     /**
      * The color of the vehicle
      */
      private Color color; // Color of the car
-    /**
+     /**
      * the name of the vehicle
      */
      private String modelName; // The car model name
-    /**
+     /**
      * The x coordinate for the vehicle
      */
      private double x;
-    /**
+     /**
      * The x coordinate for the vehicle
      */
      private double y;
-    /**
+     /**
      * The direction the vehicle is facing used in trigonometrical ways with Sin & Cos
      */
-    private double direction;
+     private double direction;
+     /**
+     * How fast the vehicle turns
+     */
+     private double turnSpeed = 0.2;
     /**
      * the speed that the vehicle turns with
      */
-     private double turnSpeed = 0.2;
+     public boolean inStorage = false;
 
     /**
      * The Constructor takes all the parameters mentioned.
@@ -60,15 +64,14 @@ public abstract class Vehicle implements Movable{
         this.modelName = modelName;
         this.turnSpeed = turnSpeed;
     }
-    private void setCurrentSpeed(double currentSpeed) {
-        this.currentSpeed = currentSpeed;
-    }
-    public double getEnginePower() { return enginePower; }
-    public double getCurrentSpeed() { return currentSpeed; }
-    public void setColor(Color clr){ color = clr; }
-    public Color getColor(){ return color; }
-    public double getX(){return x;}
-    public double getY(){return y;}
+    private void setCurrentSpeed(double currentSpeed) {this.currentSpeed = currentSpeed;}
+    double getEnginePower() {return enginePower;}
+    double getCurrentSpeed() {return currentSpeed;}
+    void setColor(Color clr) {color = clr;}
+    Color getColor() {return color;}
+    double getX() {return x;}
+    double getY() {return y;}
+    double getDirection() {return direction;}
 
 
     /**
@@ -79,15 +82,11 @@ public abstract class Vehicle implements Movable{
     }
 
     /**
-     * Moves the car
+     * Moves the vehicle
      */
     public void move(){
         x += getCurrentSpeed()* Math.cos(direction);
         y += getCurrentSpeed()* Math.sin(direction);
-    }
-
-    public double getDirection() {
-        return direction;
     }
 
     /**
@@ -105,7 +104,7 @@ public abstract class Vehicle implements Movable{
     /**
      * changes the direction the vehicle is facing to the left
      */
-    public void turnLeft(){ direction += turnSpeed; }
+    public void turnLeft() { direction += turnSpeed; }
 
     /**
      * changes the direction the vehicle is facing to the right
@@ -158,5 +157,4 @@ public abstract class Vehicle implements Movable{
             decrementSpeed(amount);
         }
     }
-
 }
