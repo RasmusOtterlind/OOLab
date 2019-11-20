@@ -6,7 +6,7 @@ public class ScaniaTruck extends Vehicle implements IFlatbed {
     private Flatbed flatbed = new Flatbed(1, 100, 0);
 
     ScaniaTruck() {
-        super(2, 110, 0, Color.BLACK, "ScaniaTruck",0.2);
+        super(2, 110, 0, Color.BLACK, "ScaniaTruck",0.2,3);
     }
 
     @Override

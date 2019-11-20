@@ -42,7 +42,10 @@ public abstract class Vehicle implements Movable{
      * How fast the vehicle turns
      */
      private double turnSpeed = 0.2;
-
+    /**
+     * The "Size" of the vehicle
+     */
+    private double size;
     /**
      * The Constructor takes all the parameters mentioned.
      * @param nrDoors
@@ -52,13 +55,14 @@ public abstract class Vehicle implements Movable{
      * @param modelName
      * @param turnSpeed
      */
-    Vehicle(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, double turnSpeed) {
+    Vehicle(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, double turnSpeed,double size) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = currentSpeed;
         this.color = color;
         this.modelName = modelName;
         this.turnSpeed = turnSpeed;
+        this.size= size;
     }
     private void setCurrentSpeed(double currentSpeed) {this.currentSpeed = currentSpeed;}
     double getEnginePower() {return enginePower;}
@@ -68,6 +72,7 @@ public abstract class Vehicle implements Movable{
     double getX() {return x;}
     double getY() {return y;}
     double getDirection() {return direction;}
+    double getSize(){return size;}
 
 
     /**
