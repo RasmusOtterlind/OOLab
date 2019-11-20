@@ -79,7 +79,7 @@ public abstract class Vehicle implements Movable{
      * Start's the engine with a bit of speed
      */
     public void startEngine(){
-        currentSpeed = 0.1;
+        gas(0.1);
     }
 
     /**

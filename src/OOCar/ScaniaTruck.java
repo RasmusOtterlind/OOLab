@@ -11,7 +11,7 @@ public class ScaniaTruck extends Vehicle implements IFlatbed {
 
     @Override
     public double speedFactor() {
-        if (isLowest()) {
+        if (isMax()) {
             return getEnginePower() * 0.01;
         }
         return 0;
