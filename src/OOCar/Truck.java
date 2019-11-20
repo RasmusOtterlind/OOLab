@@ -4,7 +4,7 @@ import java.awt.*;
 
 public abstract class Truck extends Vehicle {
 
-    private Storage storage;
+    private Flatbed flatbed;
 
     /**
      * The Constructor takes all the parameters mentioned.
@@ -16,12 +16,20 @@ public abstract class Truck extends Vehicle {
      * @param modelName
      * @param turnSpeed
      */
-    Truck(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, double turnSpeed, Storage storage) {
+    Truck(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, double turnSpeed, Flatbed flatbed) {
         super(nrDoors, enginePower, currentSpeed, color, modelName, turnSpeed);
-        this.storage = storage;
+        this.flatbed = flatbed;
     }
 
-    private void moveStorage() {
-        storage.moveStorage(getX(), getY(), getDirection());
+    public void raiseFlatBed() {
+        flatbed.raiseFlatBed(getCurrentSpeed());
     }
+
+    public void lowerFlatBed() {
+        flatbed.lowerFlatBed(getCurrentSpeed());
+    }
+
+    public boolean isMax() {return flatbed.isMax();}
+
+    public boolean isLowest() {return flatbed.isLowest();}
 }
