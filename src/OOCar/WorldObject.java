@@ -11,22 +11,22 @@ public class WorldObject {
         this.direction = direction;
     }
 
-    double getX() {return x;}
-    double getY() {return y;}
+   protected double getX() {return x;}
+   protected double getY() {return y;}
 
-    public double getDirection() {
+     protected double getDirection() {
         return direction;
     }
 
-    public void setX(double x) {
+    protected void setX(double x) {
         this.x = x;
     }
 
-    public void setY(double y) {
+    protected void setY(double y) {
         this.y = y;
     }
 
-    public void setDirection(double direction) {
+    protected void setDirection(double direction) {
         this.direction = direction;
     }
 }
