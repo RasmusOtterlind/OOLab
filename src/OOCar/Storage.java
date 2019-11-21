@@ -3,7 +3,7 @@ package OOCar;
 import java.util.ArrayList;
 import java.util.List;
 
-class Storage {
+class Storage <T extends Vehicle>{
 
     enum UnloadOrder {
         firstInFirstOut, lastInFirstOut, selected;
@@ -12,18 +12,19 @@ class Storage {
     private double largestLoadingSize = 3.0;
     private double currentFillAmount = 0;
     private UnloadOrder unloadOrder;
-    private List<Vehicle> currentStorage = new ArrayList<>();
+    private List<T> currentStorage = new ArrayList<T>();
 
-    Storage(int maxSpace, UnloadOrder unloadOrder) {
+    Storage(int maxSpace, UnloadOrder unloadOrder) { //Should probably create value of largestLoadingSize in here too
         this.maxSpace = maxSpace;
         this.unloadOrder = unloadOrder;
     }
 
-    void addToStorage(Vehicle vehicle) {
+    void addToStorage(T vehicle) { //Void Boolean instead?
         if (currentFillAmount + vehicle.getSize() <= maxSpace && vehicle.getSize() <= largestLoadingSize) {
             currentStorage.add(vehicle);
             currentFillAmount += vehicle.getSize();
         }
+
     }
 
     Vehicle removeFromStorage() {

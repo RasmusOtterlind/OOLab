@@ -9,22 +9,27 @@ public class TransportTruck extends Vehicle implements IFlatbed, IStorage {
     TransportTruck() {
         super(2, 200, 0, Color.magenta, "TransportTruck-2000", 0.05,10);
     }
-
-    void moveStorage() {
+    public void addToStorage(Vehicle vehicle){
+        storage.addToStorage(vehicle);
+    }
+    private void moveStorage() {
         storage.moveStorage(getX(), getY(), getDirection());
+    }
+    @Override
+    public void move(){
+        super.move();
+        moveStorage();
     }
 
     @Override
     public double speedFactor() {
         if(isMax()){
-        return getEnginePower() * 0.003;
+        return getEnginePower() * 0.03;
         }
         return 0;
     }
 
-    public void raiseFlatBed() {
-        flatbed.raiseFlatBed(getCurrentSpeed());
-    }
+    public void raiseFlatBed() { flatbed.raiseFlatBed(getCurrentSpeed()); }
 
     public void lowerFlatBed() {
         flatbed.lowerFlatBed(getCurrentSpeed());

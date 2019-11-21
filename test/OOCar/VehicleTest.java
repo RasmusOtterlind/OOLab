@@ -58,44 +58,27 @@ public class VehicleTest {
         assertTrue(c.getCurrentSpeed()<speed);
     }
     @Test
-    public void raiseFlatBed(){
-        ScaniaTruck t = new ScaniaTruck();
-        double angle = t.getFlatBedAngle();
-        t.raiseFlatBed();
-        assertTrue(t.getFlatBedAngle()>angle);
-    }
-    @Test
-    public void lowerFlatBed(){
-        ScaniaTruck t = new ScaniaTruck();
-        t.raiseFlatBed();t.raiseFlatBed();
-        double angle = t.getFlatBedAngle();
+    public void transportMove(){
+        TransportTruck t = new TransportTruck();
+        Vehicle c = new Volvo240();
         t.lowerFlatBed();
-        assertTrue(t.getFlatBedAngle()<angle);
+        t.addToStorage(c);
+        t.raiseFlatBed();
+        t.startEngine();
+        t.move();
+        assertTrue(c.getX()>0);
     }
-    @Test
-    public void isMax(){
-        ScaniaTruck t = new ScaniaTruck();
-        t.setFlatBedAngle(100);
-        System.out.println(t.getFlatBedAngle());
 
-        assertTrue(t.isMax());
-    }
+
     @Test
     public void startEngine() {
         ScaniaTruck t = new ScaniaTruck();
         t.startEngine();
         System.out.println(t.getCurrentSpeed());
-        assertTrue(t.getCurrentSpeed() == 0.1);
+        assertTrue(t.getCurrentSpeed() > 0);
     }
 
-    @Test
-    public void isLowest(){
-        ScaniaTruck t = new ScaniaTruck();
-        t.setFlatBedAngle(-100);
-        System.out.println(t.getFlatBedAngle());
 
-        assertTrue(t.isLowest());
-    }
 
     @Test
     public void color() {

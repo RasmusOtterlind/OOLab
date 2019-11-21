@@ -54,6 +54,7 @@ public abstract class Vehicle implements Movable{
      * @param color
      * @param modelName
      * @param turnSpeed
+     * @param size
      */
     Vehicle(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, double turnSpeed,double size) {
         this.nrDoors = nrDoors;
