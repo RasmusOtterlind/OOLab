@@ -14,6 +14,8 @@ public abstract class Vehicle extends WorldObject implements Movable{
      private String modelName;
      private double turnSpeed = 0.2;
      private double size;
+     private boolean isLoaded = false;
+     private boolean engineRunning = false;
     /**
      * The Constructor takes all the parameters mentioned.
      * @param nrDoors Number of doors on the vehicle
@@ -32,7 +34,7 @@ public abstract class Vehicle extends WorldObject implements Movable{
         this.color = color;
         this.modelName = modelName;
         this.turnSpeed = turnSpeed;
-        this.size= size;
+        this.size = size;
 
     }
     private void setCurrentSpeed(double currentSpeed) {this.currentSpeed = currentSpeed;}
@@ -40,15 +42,7 @@ public abstract class Vehicle extends WorldObject implements Movable{
     double getCurrentSpeed() {return currentSpeed;}
     void setColor(Color clr) {color = clr;}
     Color getColor() {return color;}
-    double getSize(){return size;}
-
-
-    /**
-     * Start's the engine with a bit of speed
-     */
-    public void startEngine(){
-        gas(0.1);
-    }
+    double getSize() {return size;}
 
     /**
      * Moves the vehicle
@@ -57,8 +51,6 @@ public abstract class Vehicle extends WorldObject implements Movable{
         setX(getX() + getCurrentSpeed()* Math.cos(getDirection()));
         setY(getY() + getCurrentSpeed()* Math.sin(getDirection()));
     }
-
-
 
     /**
      * Sets the vehicles position to be the same as the storage it's inside.
@@ -85,7 +77,7 @@ public abstract class Vehicle extends WorldObject implements Movable{
     }
 
     /**
-     * Increases the speed of the car
+     * Increases the speed of the car.
      * @param amount
      */
     private void incrementSpeed(double amount){
@@ -93,7 +85,7 @@ public abstract class Vehicle extends WorldObject implements Movable{
     }
 
     /**
-     * Decreases the speed of the car
+     * Decreases the speed of the car.
      * @param amount
      */
     private void decrementSpeed(double amount){
@@ -101,26 +93,40 @@ public abstract class Vehicle extends WorldObject implements Movable{
     }
 
     /**
-     * An abstract method that requires double as return value used when increasing speed
+     * An abstract method that requires double as return value used when increasing speed.
      * @return
      */
     public abstract double speedFactor();
 
     /**
-     * Set's speed to 0
+     * Start's the engine with a bit of speed.
      */
-    void stopEngine(){ currentSpeed = 0; }
-
-    /**
-     * increases the speed of the car
-     * @param amount
-     */
-    public void gas(double amount){
-        if(amount>=0 && amount<=1){incrementSpeed(amount); }
+    public void startEngine(){
+        engineRunning = true;
+        gas(0.1);
     }
 
     /**
-     * decreases the speed of the car
+     * Turns of the vehicle if it's speed is 0.
+     */
+    void stopEngine(){
+        if (currentSpeed == 0){
+            engineRunning = false;
+        }
+    }
+
+    /**
+     * Increases the speed of the car if the engine is running.
+     * @param amount
+     */
+    public void gas(double amount){
+        if(engineRunning && amount>=0 && amount<=1){
+            incrementSpeed(amount);
+        }
+    }
+
+    /**
+     * Pushes.
      * @param amount
      */
     public void brake(double amount){

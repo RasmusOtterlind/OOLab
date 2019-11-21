@@ -9,14 +9,15 @@ class Storage <T extends Vehicle>{
         firstInFirstOut, lastInFirstOut, selected;
     }
     private double maxSpace;
-    private double largestLoadingSize = 3.0;
+    private double largestLoadingSize;
     private double currentFillAmount = 0;
     private UnloadOrder unloadOrder;
     private List<T> currentStorage = new ArrayList<T>();
 
-    Storage(int maxSpace, UnloadOrder unloadOrder) { //Should probably create value of largestLoadingSize in here too
+    Storage(int maxSpace, UnloadOrder unloadOrder, double largestLoadingSize) { //Should probably create value of largestLoadingSize in here too
         this.maxSpace = maxSpace;
         this.unloadOrder = unloadOrder;
+        this.largestLoadingSize = largestLoadingSize;
     }
 
     void addToStorage(T vehicle) { //Void Boolean instead?
@@ -24,7 +25,6 @@ class Storage <T extends Vehicle>{
             currentStorage.add(vehicle);
             currentFillAmount += vehicle.getSize();
         }
-
     }
 
     Vehicle removeFromStorage() {
@@ -43,6 +43,9 @@ class Storage <T extends Vehicle>{
     void moveStorage(double x, double y, double direction) {
         for (Vehicle vehicle : currentStorage) {
             vehicle.followStorage(x, y, direction);
+            if (vehicle.getHasStorage()) {
+                vehicle.moveStorage
+            }
         }
     }
 }
