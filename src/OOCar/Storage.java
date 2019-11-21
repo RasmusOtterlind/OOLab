@@ -6,13 +6,13 @@ import java.util.List;
 class Storage <T extends Vehicle>{
 
     enum UnloadOrder {
-        firstInFirstOut, lastInFirstOut, selected;
+        firstInFirstOut, lastInFirstOut, selected
     }
     private double maxSpace;
     private double largestLoadingSize;
     private double currentFillAmount = 0;
     private UnloadOrder unloadOrder;
-    private List<T> currentStorage = new ArrayList<T>();
+    private List<T> currentStorage = new ArrayList<>();
 
     Storage(int maxSpace, UnloadOrder unloadOrder, double largestLoadingSize) { //Should probably create value of largestLoadingSize in here too
         this.maxSpace = maxSpace;
@@ -43,8 +43,9 @@ class Storage <T extends Vehicle>{
     void moveStorage(double x, double y, double direction) {
         for (Vehicle vehicle : currentStorage) {
             vehicle.followStorage(x, y, direction);
-            if (vehicle.getHasStorage()) {
-                vehicle.moveStorage
+
+            if (vehicle instanceof IStorage) {
+                ((IStorage) vehicle).moveStorage();
             }
         }
     }

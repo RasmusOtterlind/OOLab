@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class TransportTruck extends Vehicle implements IFlatbed, IStorage {
     private Flatbed flatbed = new Flatbed(100, 100, 0);
-    private Storage storage = new Storage(10, Storage.UnloadOrder.firstInFirstOut, 3.0);
+    private Storage<Vehicle> storage = new Storage<>(10, Storage.UnloadOrder.firstInFirstOut, 3.0);
 
     TransportTruck() {
         super(2, 200, 0, Color.magenta, "TransportTruck-2000", 0.05,10);
@@ -14,8 +14,12 @@ public class TransportTruck extends Vehicle implements IFlatbed, IStorage {
         storage.addToStorage(vehicle);
     }
 
-    private void moveStorage() {
+    public void moveStorage() {
         storage.moveStorage(getX(), getY(), getDirection());
+    }
+
+    public Vehicle removeFromStorage() {
+        return null;
     }
 
     @Override
