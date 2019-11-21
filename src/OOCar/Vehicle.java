@@ -86,9 +86,13 @@ public abstract class Vehicle implements Movable{
     /**
      * Moves the vehicle
      */
-    public void move(){
+    protected void setPosition(){
             x += getCurrentSpeed()* Math.cos(direction);
             y += getCurrentSpeed()* Math.sin(direction);
+    }
+
+    public void move(){
+        setPosition();
     }
 
     /**
@@ -159,4 +163,5 @@ public abstract class Vehicle implements Movable{
             decrementSpeed(amount);
         }
     }
+
 }
