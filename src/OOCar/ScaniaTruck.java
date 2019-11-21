@@ -3,7 +3,7 @@ package OOCar;
 import java.awt.*;
 
 public class ScaniaTruck extends Vehicle implements IFlatbed {
-    private Flatbed flatbed = new Flatbed(1, 100, 0);
+    private Flatbed flatbed = new Flatbed(100, 100, 0);
 
     ScaniaTruck() {
         super(2, 110, 0, Color.BLACK, "ScaniaTruck",0.2,3);

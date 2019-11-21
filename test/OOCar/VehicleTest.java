@@ -73,6 +73,7 @@ public class VehicleTest {
     @Test
     public void startEngine() {
         ScaniaTruck t = new ScaniaTruck();
+        t.raiseFlatBed();
         t.startEngine();
         System.out.println(t.getCurrentSpeed());
         assertTrue(t.getCurrentSpeed() > 0);

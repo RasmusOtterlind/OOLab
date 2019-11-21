@@ -5,58 +5,27 @@ import java.awt.*;
 /**
  * the abstract class vehicle with the basic characteristics of a car
  */
-public abstract class Vehicle implements Movable{
-     /**
-     * Number of doors on the vehicle
-     */
-     private int nrDoors; // Number of doors on the car
-     /**
-     * This determines the max speed of the vehicle
-     */
-     private double enginePower; // Engine power of the car
-     /**
-     * The speed of the vehicle used when you move it
-     */
-     private double currentSpeed; // The current speed of the car
-     /**
-     * The color of the vehicle
-     */
-     private Color color; // Color of the car
-     /**
-     * the name of the vehicle
-     */
-     private String modelName; // The car model name
-     /**
-     * The x coordinate for the vehicle
-     */
-     private double x;
-     /**
-     * The x coordinate for the vehicle
-     */
-     private double y;
-     /**
-     * The direction the vehicle is facing used in trigonometrical ways with Sin & Cos
-     */
-     private double direction;
-     /**
-     * How fast the vehicle turns
-     */
+public abstract class Vehicle extends WorldObject implements Movable{
+
+     private int nrDoors;
+     private double enginePower;
+     private double currentSpeed;
+     private Color color;
+     private String modelName;
      private double turnSpeed = 0.2;
-    /**
-     * The "Size" of the vehicle
-     */
-    private double size;
+     private double size;
     /**
      * The Constructor takes all the parameters mentioned.
-     * @param nrDoors
-     * @param enginePower
-     * @param currentSpeed
-     * @param color
-     * @param modelName
-     * @param turnSpeed
-     * @param size
+     * @param nrDoors Number of doors on the vehicle
+     * @param enginePower This determines the max speed of the vehicle
+     * @param currentSpeed The speed of the vehicle used when you move it
+     * @param color The color of the vehicle
+     * @param modelName the name of the vehicle
+     * @param turnSpeed How fast the vehicle turns
+     * @param size The "Size" of the vehicle
      */
     Vehicle(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, double turnSpeed,double size) {
+        super(0, 0, 0);
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = currentSpeed;
@@ -64,15 +33,13 @@ public abstract class Vehicle implements Movable{
         this.modelName = modelName;
         this.turnSpeed = turnSpeed;
         this.size= size;
+
     }
     private void setCurrentSpeed(double currentSpeed) {this.currentSpeed = currentSpeed;}
     double getEnginePower() {return enginePower;}
     double getCurrentSpeed() {return currentSpeed;}
     void setColor(Color clr) {color = clr;}
     Color getColor() {return color;}
-    double getX() {return x;}
-    double getY() {return y;}
-    double getDirection() {return direction;}
     double getSize(){return size;}
 
 
@@ -86,14 +53,12 @@ public abstract class Vehicle implements Movable{
     /**
      * Moves the vehicle
      */
-    protected void setPosition(){
-            x += getCurrentSpeed()* Math.cos(direction);
-            y += getCurrentSpeed()* Math.sin(direction);
+    public void move(){
+        setX(getX() + getCurrentSpeed()* Math.cos(getDirection()));
+        setY(getY() + getCurrentSpeed()* Math.sin(getDirection()));
     }
 
-    public void move(){
-        setPosition();
-    }
+
 
     /**
      * Sets the vehicles position to be the same as the storage it's inside.
@@ -102,21 +67,21 @@ public abstract class Vehicle implements Movable{
      * @param direction
      */
     void followStorage(double x, double y, double direction) {
-        this.x = x;
-        this.y = y;
-        this.direction = direction;
+        setX(x);
+        setY(y);
+        setDirection(direction);
     }
 
     /**
      * changes the direction the vehicle is facing to the left
      */
-    public void turnLeft() { direction += turnSpeed; }
+    public void turnLeft() { setDirection(getDirection() + turnSpeed); }
 
     /**
      * changes the direction the vehicle is facing to the right
      */
     public void turnRight(){
-        direction -= turnSpeed;
+        setDirection( getDirection() - turnSpeed);
     }
 
     /**
