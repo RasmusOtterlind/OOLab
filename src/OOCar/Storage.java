@@ -21,7 +21,7 @@ class Storage <T extends Vehicle>{
         this.largestLoadingSize = largestLoadingSize;
     }
 
-    void addToStorage(T vehicle, double x ,double y,double direction) { //Void Boolean instead?
+    void addToStorage(T vehicle, double x ,double y, double direction) { //Void Boolean instead?
         if (currentFillAmount + vehicle.getSize() <= maxSpace && vehicle.getSize() <= largestLoadingSize
                 && (x-loadingRadius<=vehicle.getX() && vehicle.getX() >=x+loadingRadius)&& (y-loadingRadius<=vehicle.getY() && vehicle.getY() >=y+loadingRadius)){
             currentStorage.add(vehicle);

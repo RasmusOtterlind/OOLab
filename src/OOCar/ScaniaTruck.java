@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * A subclass to Vehicle.
  */
-public class ScaniaTruck extends Vehicle implements IFlatbed {
+public class ScaniaTruck extends Vehicle {
     /**
      * Composition: Creating new object flatbed to reach method in the class Flatbed with the help of delegation.
      */
