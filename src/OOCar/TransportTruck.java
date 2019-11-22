@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * A subclass to Vehicle. Implements interface IStorage.
  */
-public class TransportTruck extends Vehicle implements IFlatbed, IStorage {
+public class TransportTruck extends Vehicle implements IStorage {
     /**
      *  Composition: Creating new object flatbed to reach method in the class Flatbed with the help of delegation.
      */
@@ -24,7 +24,7 @@ public class TransportTruck extends Vehicle implements IFlatbed, IStorage {
      * @param vehicle The vehicle you want to load.
      */
     public void addToStorage(Vehicle vehicle){
-        if (isLowest() && vehicle.getIsLoadedOn){
+        if (isLowest() && vehicle.getIsLoadedOn()){
             storage.addToStorage(vehicle, getX(), getY(), getDirection());
         }
     }

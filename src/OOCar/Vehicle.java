@@ -43,6 +43,7 @@ public abstract class Vehicle extends WorldObject implements Movable{
     Color getColor() {return color;}
     double getSize() {return size;}
     boolean getEngineRunning(){ return engineRunning;}
+    boolean getIsLoadedOn(){return isLoadedOn;}
     //private void setLoadedOn(){isLoadedOn = !isLoadedOn;}
 
 
