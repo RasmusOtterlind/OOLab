@@ -14,19 +14,17 @@ public class WorldObject {
    protected double getX() {return x;}
    protected double getY() {return y;}
 
-     protected double getDirection() {
+   protected double getDirection() {
         return direction;
+    }
+    protected void setDirection(double direction) {
+        this.direction = direction;
     }
 
     protected void setX(double x) {
         this.x = x;
     }
-
     protected void setY(double y) {
         this.y = y;
-    }
-
-    protected void setDirection(double direction) {
-        this.direction = direction;
     }
 }
