@@ -17,7 +17,7 @@ class Storage <T extends Vehicle>{
     }
     private double maxSpace;
     private double largestLoadingSize;
-    private double loadingRadius;
+    private double loadingRadius = 10;
     private double currentFillAmount = 0;
     private UnloadOrder unloadOrder;
     private List<T> currentStorage = new ArrayList<>();
@@ -42,7 +42,8 @@ class Storage <T extends Vehicle>{
      * @return true/false
      */
     private boolean inRadius(double x ,double y,Vehicle vehicle){
-        if(x-loadingRadius<=vehicle.getX() && vehicle.getX() >=x+loadingRadius && (y-loadingRadius<=vehicle.getY() && vehicle.getY() >=y+loadingRadius)){
+        if(x-loadingRadius<=vehicle.getX() && vehicle.getX() <=x+loadingRadius && (y-loadingRadius<=vehicle.getY() && vehicle.getY() <=y+loadingRadius)){
+            return true;
         }
         return false;
     }
