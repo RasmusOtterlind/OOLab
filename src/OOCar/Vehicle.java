@@ -94,7 +94,7 @@ public abstract class Vehicle extends WorldObject implements Movable{
      * @param amount
      */
     private void decrementSpeed(double amount){
-        setCurrentSpeed( Math.max(getCurrentSpeed() - speedFactor() * amount,0));
+        setCurrentSpeed( Math.max(getCurrentSpeed() - speedFactor() * amount, 0));
     }
 
     /**
