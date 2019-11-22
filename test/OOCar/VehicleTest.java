@@ -16,6 +16,7 @@ public class VehicleTest {
         Vehicle c = new Saab95();
         double x = c.getX();
         double y = c.getY();
+        c.startEngine();
         c.turnLeft();
         c.gas(1);
         c.move();
@@ -25,6 +26,7 @@ public class VehicleTest {
     @Test
     public void turnLeft() {                                                                                    //kolla vänster
         Vehicle c = new Saab95();
+        c.startEngine();
         c.gas(1);
         c.turnLeft();
         c.move();
@@ -34,14 +36,17 @@ public class VehicleTest {
     @Test
     public void turnRight() {                                                                                   //kolla höger
         Vehicle c = new Saab95();
+        c.startEngine();
         c.gas(1);
         c.turnRight();
         c.move();
         assertTrue(c.getY()<0);
     }
+
     @Test
     public void gas() {
         Vehicle c = new Volvo240();
+        c.startEngine();
         double d = c.getCurrentSpeed();
         c.gas(1);
         assertTrue(c.getCurrentSpeed()>d);
@@ -49,18 +54,20 @@ public class VehicleTest {
     @Test
     public void brake() {
         Vehicle c = new Volvo240();
-        c.gas(1);
+        c.startEngine();
         c.gas(1);
         double speed = c.getCurrentSpeed();
         System.out.println(c.getCurrentSpeed());
-        c.brake(1);
+        c.brake(0.5);
         System.out.println(c.getCurrentSpeed());
         assertTrue(c.getCurrentSpeed()<speed);
     }
     @Test
-    public void transportMove(){
+    public void transportUpdatePosition(){
         TransportTruck t = new TransportTruck();
         Vehicle c = new Volvo240();
+        t.startEngine();
+        c.startEngine();
         t.lowerFlatBed();
         t.addToStorage(c);
         t.raiseFlatBed();
@@ -79,24 +86,32 @@ public class VehicleTest {
         assertTrue(t.getCurrentSpeed() > 0);
     }
 
-
+    @Test
+    public void incrementSpeed() {
+        Vehicle c = new Volvo240();
+        c.startEngine();
+        c.gas(1);
+        double d = c.getCurrentSpeed();
+        c.gas(1);
+        assertTrue(c.getCurrentSpeed()>d);
+    }
 
     @Test
     public void color() {
         ScaniaTruck t = new ScaniaTruck();
         t.setColor(Color.red);
-        assertTrue(t.getColor() == Color.red);
+        assertSame(t.getColor(), Color.red);
     }
     @Test
     public void turbo() {
         Saab95 sab1 = new Saab95();
         sab1.setTurboOn();
-        startEngine();
+        sab1.startEngine();
         sab1.gas(1);
         sab1.move();
         Saab95 sab2 = new Saab95();
         sab2.setTurboOff();
-        startEngine();
+        sab2.startEngine();
         sab2.gas(1);
         sab2.move();
         assertTrue(sab1.getX()>sab2.getX());
