@@ -14,7 +14,7 @@ public abstract class Vehicle extends WorldObject implements Movable{
      private String modelName;
      private double turnSpeed = 0.2;
      private double size;
-     private boolean isLoaded = false;
+     private boolean isLoadedOn = false;
      private boolean engineRunning = false;
     /**
      * The Constructor takes all the parameters mentioned.
@@ -35,7 +35,6 @@ public abstract class Vehicle extends WorldObject implements Movable{
         this.modelName = modelName;
         this.turnSpeed = turnSpeed;
         this.size = size;
-
     }
     private void setCurrentSpeed(double currentSpeed) {this.currentSpeed = currentSpeed;}
     double getEnginePower() {return enginePower;}
@@ -43,11 +42,15 @@ public abstract class Vehicle extends WorldObject implements Movable{
     void setColor(Color clr) {color = clr;}
     Color getColor() {return color;}
     double getSize() {return size;}
+    boolean getEngineRunning(){ return engineRunning;}
+    //private void setLoadedOn(){isLoadedOn = !isLoadedOn;}
+
 
     /**
      * Moves the vehicle
      */
     public void move(){
+
         setX(getX() + getCurrentSpeed()* Math.cos(getDirection()));
         setY(getY() + getCurrentSpeed()* Math.sin(getDirection()));
     }
@@ -99,17 +102,19 @@ public abstract class Vehicle extends WorldObject implements Movable{
     public abstract double speedFactor();
 
     /**
-     * Start's the engine with a bit of speed.
+     * Start's the engine with a bit of speed if it's not loaded on another object.
      */
     public void startEngine(){
-        engineRunning = true;
-        gas(0.1);
+        if(!isLoadedOn && !engineRunning) {
+            engineRunning = true;
+            gas(0.1);
+        }
     }
 
     /**
      * Turns of the vehicle if it's speed is 0.
      */
-    void stopEngine(){
+    public void stopEngine(){
         if (currentSpeed == 0){
             engineRunning = false;
         }
@@ -126,7 +131,7 @@ public abstract class Vehicle extends WorldObject implements Movable{
     }
 
     /**
-     * Pushes.
+     * lowers the speed of the car.
      * @param amount
      */
     public void brake(double amount){

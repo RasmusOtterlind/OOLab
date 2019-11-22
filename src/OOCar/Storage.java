@@ -10,6 +10,7 @@ class Storage <T extends Vehicle>{
     }
     private double maxSpace;
     private double largestLoadingSize;
+    private double loadingRadius;
     private double currentFillAmount = 0;
     private UnloadOrder unloadOrder;
     private List<T> currentStorage = new ArrayList<>();
@@ -20,10 +21,12 @@ class Storage <T extends Vehicle>{
         this.largestLoadingSize = largestLoadingSize;
     }
 
-    void addToStorage(T vehicle) { //Void Boolean instead?
-        if (currentFillAmount + vehicle.getSize() <= maxSpace && vehicle.getSize() <= largestLoadingSize) {
+    void addToStorage(T vehicle, double x ,double y,double direction) { //Void Boolean instead?
+        if (currentFillAmount + vehicle.getSize() <= maxSpace && vehicle.getSize() <= largestLoadingSize
+                && (x-loadingRadius<=vehicle.getX() && vehicle.getX() >=x+loadingRadius)&& (y-loadingRadius<=vehicle.getY() && vehicle.getY() >=y+loadingRadius)){
             currentStorage.add(vehicle);
             currentFillAmount += vehicle.getSize();
+            vehicle.followStorage(x,y,direction);
         }
     }
 
@@ -41,6 +44,7 @@ class Storage <T extends Vehicle>{
     }
 
     void moveStorage(double x, double y, double direction) {
+
         for (Vehicle vehicle : currentStorage) {
             vehicle.followStorage(x, y, direction);
 
