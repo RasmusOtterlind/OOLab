@@ -3,8 +3,15 @@ package OOCar;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class that can be specified to only receive vehicles of specific types.
+ * @param <T> Vehicle type
+ */
 class Storage <T extends Vehicle>{
 
+    /**
+     * Specifies in what order you can unload the vehicles.
+     */
     enum UnloadOrder {
         firstInFirstOut, lastInFirstOut, selected
     }
@@ -15,25 +22,52 @@ class Storage <T extends Vehicle>{
     private UnloadOrder unloadOrder;
     private List<T> currentStorage = new ArrayList<>();
 
+    /**
+     *
+     * @param maxSpace Max space in storage.
+     * @param unloadOrder The order to unload vehicles from the storage.
+     * @param largestLoadingSize The largest vehicle size a storage can receive.
+     */
     Storage(int maxSpace, UnloadOrder unloadOrder, double largestLoadingSize) { //Should probably create value of largestLoadingSize in here too
         this.maxSpace = maxSpace;
         this.unloadOrder = unloadOrder;
         this.largestLoadingSize = largestLoadingSize;
     }
-    private boolean inRadius(double x ,double y,T vehicle){
-        if(x-loadingRadius<=vehicle.getX() && vehicle.getX() >=x+loadingRadius && (y-loadingRadius<=vehicle.getY() && vehicle.getY() >=y+loadingRadius)){
 
+    /**
+     * Checks if the vehicle to load is in the same radius as the storage.
+     * @param x The transport truck's or service station's x-coordinate.
+     * @param y The transport truck's or service station's y-coordinate.
+     * @param vehicle The vehicle you want to check and load.
+     * @return true/false
+     */
+    private boolean inRadius(double x ,double y,Vehicle vehicle){
+        if(x-loadingRadius<=vehicle.getX() && vehicle.getX() >=x+loadingRadius && (y-loadingRadius<=vehicle.getY() && vehicle.getY() >=y+loadingRadius)){
         }
         return false;
     }
 
-    void addToStorage(T vehicle, double x ,double y, double direction) { //Void Boolean instead?
+    /**
+     * Add vehicle to storage.
+     * @param vehicle The vehicle to load.
+     * @param x The transport truck's or service station's x-coordinate.
+     * @param y The transport truck's or service station's y-coordinate.
+     * @param direction The transport trucks's or service station's direction.
+     */
+    void addToStorage(Vehicle vehicle, double x ,double y, double direction) { //Void Boolean instead?
         if (currentFillAmount + vehicle.getSize() <= maxSpace && vehicle.getSize() <= largestLoadingSize && inRadius(x,y,vehicle));{
             currentFillAmount += vehicle.getSize();
             vehicle.updatePosition(x,y,direction,true);
         }
     }
 
+    /**
+     * Unload vehicle from the storage
+     * @param x The loaded vehicle's and transport/service station's x-coordinate.
+     * @param y The loaded vehicle's and transport/service station's y-coordinate.
+     * @param direction The loaded vehicle's and transport/service station's direction.
+     * @return Vehicle
+     */
    public Vehicle unloadStorage(double x,double y,double direction) {
         if(!currentStorage.isEmpty()) {
             if(unloadOrder == UnloadOrder.firstInFirstOut){

@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * A subclass to Vehicle. Implements interface IStorage.
  */
-public class TransportTruck extends Vehicle implements IStorage {
+public class TransportTruck extends Vehicle implements IStorage{
     /**
      *  Composition: Creating new object flatbed to reach method in the class Flatbed with the help of delegation.
      */
@@ -13,7 +13,7 @@ public class TransportTruck extends Vehicle implements IStorage {
     /**
      *  Composition: Creating new object storage to reach method in the class Storage with the help of delegation.
      */
-    private Storage<Vehicle> storage = new Storage<>(10, Storage.UnloadOrder.firstInFirstOut, 3.0);
+    private Storage storage = new Storage<>(10, Storage.UnloadOrder.firstInFirstOut, 3.0);
 
     TransportTruck() {
         super(2, 200, 0, Color.magenta, "TransportTruck-2000", 0.05,10);

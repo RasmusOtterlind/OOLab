@@ -1,7 +1,7 @@
 package OOCar;
 
-interface IStorage {
+interface IStorage<T extends Vehicle> {
     void moveStorage();
-    void addToStorage(Vehicle vehicle);
+    void addToStorage(T vehicle);
     Vehicle unloadStorage();
 }
