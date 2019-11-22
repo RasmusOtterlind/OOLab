@@ -2,7 +2,7 @@ package OOCar;
 
 import java.awt.*;
 
-public class ScaniaTruck extends Vehicle implements IFlatbed {
+public class ScaniaTruck extends Vehicle {
     private Flatbed flatbed = new Flatbed(100, 100, 0);
 
     ScaniaTruck() {

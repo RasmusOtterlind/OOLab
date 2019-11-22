@@ -3,7 +3,7 @@ package OOCar;
 import java.awt.*;
 
 /**
- * the abstract class vehicle with the basic characteristics of a car
+ * An abstract vehicle with the basic characteristics of a car.
  */
 public abstract class Vehicle extends WorldObject implements Movable{
 
@@ -12,21 +12,21 @@ public abstract class Vehicle extends WorldObject implements Movable{
      private double currentSpeed;
      private Color color;
      private String modelName;
-     private double turnSpeed = 0.2;
+     private double turnSpeed;
      private double size;
      private boolean isLoadedOn = false;
      private boolean engineRunning = false;
     /**
      * The Constructor takes all the parameters mentioned.
-     * @param nrDoors Number of doors on the vehicle
-     * @param enginePower This determines the max speed of the vehicle
-     * @param currentSpeed The speed of the vehicle used when you move it
-     * @param color The color of the vehicle
-     * @param modelName the name of the vehicle
-     * @param turnSpeed How fast the vehicle turns
-     * @param size The "Size" of the vehicle
+     * @param nrDoors Number of doors on the vehicle.
+     * @param enginePower This determines the max speed of the vehicle.
+     * @param currentSpeed The speed of the vehicle used when you move it.
+     * @param color The color of the vehicle.
+     * @param modelName The name of the vehicle.
+     * @param turnSpeed How fast the vehicle turns.
+     * @param size The "Size" of the vehicle.
      */
-    Vehicle(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, double turnSpeed,double size) {
+    Vehicle(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, double turnSpeed, double size) {
         super(0, 0, 0);
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
@@ -47,7 +47,7 @@ public abstract class Vehicle extends WorldObject implements Movable{
 
 
     /**
-     * Moves the vehicle
+     * Moves the vehicle based on it's current speed and direction.
      */
     public void move(){
 
@@ -61,19 +61,19 @@ public abstract class Vehicle extends WorldObject implements Movable{
      * @param y
      * @param direction
      */
-    void followStorage(double x, double y, double direction) {
+    void updatePosition(double x, double y, double direction) {
         setX(x);
         setY(y);
         setDirection(direction);
     }
 
     /**
-     * changes the direction the vehicle is facing to the left
+     * Changes the direction the vehicle is facing leftwards.
      */
     public void turnLeft() { setDirection(getDirection() + turnSpeed); }
 
     /**
-     * changes the direction the vehicle is facing to the right
+     * Changes the direction the vehicle is facing rightwards.
      */
     public void turnRight(){
         setDirection( getDirection() - turnSpeed);
@@ -131,7 +131,7 @@ public abstract class Vehicle extends WorldObject implements Movable{
     }
 
     /**
-     * lowers the speed of the car.
+     * Lowers the speed of the car.
      * @param amount
      */
     public void brake(double amount){

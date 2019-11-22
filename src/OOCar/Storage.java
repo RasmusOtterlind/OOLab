@@ -20,31 +20,31 @@ class Storage <T extends Vehicle>{
         this.largestLoadingSize = largestLoadingSize;
     }
 
-    void addToStorage(T vehicle, double x ,double y,double direction) { //Void Boolean instead?
+    void addToStorage(T vehicle, double x ,double y, double direction) { //Void Boolean instead?
         if (currentFillAmount + vehicle.getSize() <= maxSpace && vehicle.getSize() <= largestLoadingSize) {
             currentStorage.add(vehicle);
             currentFillAmount += vehicle.getSize();
-            vehicle.followStorage(x,y,direction);
+            vehicle.updatePosition(x,y,direction);
         }
     }
 
-    Vehicle removeFromStorage() {
-        if (unloadOrder.equals(UnloadOrder.firstInFirstOut)) {
-            return unloadFirstInFirstOut();
-        }
-        return null;
-    }
-
-    private Vehicle unloadFirstInFirstOut() {
+    Vehicle unloadStorage() {
         return currentStorage.remove(0);
         //The car should be unloaded to a coordinate somewhere behind the storage.
         //(Distance selectable when creating storage?)
     }
 
+    /**
+     * Calls updatePosition on all vehicles inside the storage,
+     * also calls moveStorage on all IStorage vehicles.
+     * @param x
+     * @param y
+     * @param direction
+     */
     void moveStorage(double x, double y, double direction) {
 
         for (Vehicle vehicle : currentStorage) {
-            vehicle.followStorage(x, y, direction);
+            vehicle.updatePosition(x, y, direction);
 
             if (vehicle instanceof IStorage) {
                 ((IStorage) vehicle).moveStorage();
