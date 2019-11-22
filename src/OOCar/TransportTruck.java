@@ -60,13 +60,28 @@ public class TransportTruck extends Vehicle implements IStorage{
         return 0;
     }
 
+    /**
+     * raises the flatbed of the truck
+     */
     public void raiseFlatBed() { flatbed.raiseFlatBed(getCurrentSpeed()); }
 
+    /**
+     * lowers the flatbed of the truck
+     */
     public void lowerFlatBed() {
         flatbed.lowerFlatBed(getCurrentSpeed());
     }
 
+    /**
+     * checks if the flatbed is up
+     * @return
+     */
     public boolean isMax() {return flatbed.isMax();}
+
+    /**
+     * checks if the flatbed is down
+     * @return
+     */
 
     public boolean isLowest() {return flatbed.isLowest();}
 }
