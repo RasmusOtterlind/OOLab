@@ -34,7 +34,7 @@ public class TransportTruck extends Vehicle implements IStorage {
     }
 
     public Vehicle unloadStorage() {
-        return null;
+         return storage.unloadStorage(getX(),getY(),getDirection());
     }
 
     @Override

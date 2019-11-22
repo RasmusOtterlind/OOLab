@@ -57,15 +57,16 @@ public abstract class Vehicle extends WorldObject implements Movable{
     }
 
     /**
-     * Sets the vehicles position to be the same as the storage it's inside.
+     * Sets the vehicles position to be the same as the storage it's inside or helps remove the car from storage;
      * @param x
      * @param y
      * @param direction
      */
-    void updatePosition(double x, double y, double direction) {
+    void updatePosition(double x, double y, double direction,boolean isLoadedOn) {
         setX(x);
         setY(y);
         setDirection(direction);
+        this.isLoadedOn = isLoadedOn;
     }
 
     /**
