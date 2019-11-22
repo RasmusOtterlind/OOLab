@@ -90,6 +90,14 @@ class Storage <T extends Vehicle>{
         //The car should be unloaded to a coordinate somewhere behind the storage.
         //(Distance selectable when creating storage?)
     }
+    /**
+     * Unload vehicle from the storage
+     * @param x The loaded vehicle's and transport/service station's x-coordinate.
+     * @param y The loaded vehicle's and transport/service station's y-coordinate.
+     * @param direction The loaded vehicle's and transport/service station's direction.
+     * @param vehicle the specific vehicle you want to unload
+     * @return Vehicle
+     */
     public Vehicle unloadStorage(double x,double y,double direction,T vehicle){
         if(!currentStorage.isEmpty() && unloadOrder == UnloadOrder.selected){
             currentFillAmount -= vehicle.getSize();
