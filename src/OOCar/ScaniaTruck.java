@@ -11,8 +11,8 @@ public class ScaniaTruck extends Vehicle {
      */
     private Flatbed flatbed = new Flatbed(100, 100, 0);
 
-    ScaniaTruck() {
-        super(2, 110, 0, Color.BLACK, "ScaniaTruck",0.2,3);
+    ScaniaTruck(double x, double y, double direction) {
+        super(x, y, direction,2, 110, 0, Color.BLACK, "ScaniaTruck",0.2,3);
     }
 
     /**

@@ -42,7 +42,7 @@ class Storage <T extends Vehicle>{
      * @return true/false
      */
     private boolean inRadius(double x ,double y,Vehicle vehicle){
-        if(x-loadingRadius<=vehicle.getX() && vehicle.getX() <=x+loadingRadius && (y-loadingRadius<=vehicle.getY() && vehicle.getY() <=y+loadingRadius)){
+        if(Math.abs(x-vehicle.getX()) < loadingRadius&& Math.abs(y-vehicle.getY())<loadingRadius){
             return true;
         }
         return false;
@@ -55,10 +55,11 @@ class Storage <T extends Vehicle>{
      * @param y The transport truck's or service station's y-coordinate.
      * @param direction The transport trucks's or service station's direction.
      */
-    void addToStorage(Vehicle vehicle, double x ,double y, double direction) { //Void Boolean instead?
-        if (currentFillAmount + vehicle.getSize() <= maxSpace && vehicle.getSize() <= largestLoadingSize && inRadius(x,y,vehicle));{
+    void addToStorage(T vehicle, double x ,double y, double direction) { //Void Boolean instead?
+        if (currentFillAmount + vehicle.getSize() <= maxSpace && vehicle.getSize() <= largestLoadingSize && inRadius(x,y,vehicle)){
             currentFillAmount += vehicle.getSize();
             vehicle.updatePosition(x,y,direction,true);
+            currentStorage.add(vehicle);
         }
     }
 

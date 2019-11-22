@@ -13,7 +13,7 @@ public class VehicleTest {
 
     @Test
     public void move() {
-        Vehicle c = new Saab95();
+        Vehicle c = new Saab95(0,0,0);
         double x = c.getX();
         double y = c.getY();
         c.startEngine();
@@ -25,7 +25,7 @@ public class VehicleTest {
 
     @Test
     public void turnLeft() {                                                                                    //kolla vänster
-        Vehicle c = new Saab95();
+        Vehicle c = new Saab95(0,0,0);
         c.startEngine();
         c.gas(1);
         c.turnLeft();
@@ -35,7 +35,7 @@ public class VehicleTest {
 
     @Test
     public void turnRight() {                                                                                   //kolla höger
-        Vehicle c = new Saab95();
+        Vehicle c = new Saab95(0,0,0);
         c.startEngine();
         c.gas(1);
         c.turnRight();
@@ -45,7 +45,7 @@ public class VehicleTest {
 
     @Test
     public void gas() {
-        Vehicle c = new Volvo240();
+        Vehicle c = new Volvo240(0,0,0);
         c.startEngine();
         double d = c.getCurrentSpeed();
         c.gas(1);
@@ -53,7 +53,7 @@ public class VehicleTest {
     }
     @Test
     public void brake() {
-        Vehicle c = new Volvo240();
+        Vehicle c = new Volvo240(0,0,0);
         c.startEngine();
         c.gas(1);
         double speed = c.getCurrentSpeed();
@@ -63,23 +63,35 @@ public class VehicleTest {
         assertTrue(c.getCurrentSpeed()<speed);
     }
     @Test
-    public void transportUpdatePosition(){
-        TransportTruck t = new TransportTruck();
-        Vehicle c = new Volvo240();
-        t.startEngine();
-        c.startEngine();
-        t.lowerFlatBed();
+    public void transport(){
+        TransportTruck t = new TransportTruck(0, 0, 0);
+        Vehicle c = new Volvo240(0,0,0);
+        Vehicle c2 = new Volvo240(100, 100, 100);
+
+        for (int i = 0; i < 1000; i++) {
+            if (!t.isLowest()){
+                t.lowerFlatBed();
+            }
+        }
+
         t.addToStorage(c);
-        t.raiseFlatBed();
+        t.addToStorage(c2);
+
+        for (int i = 0; i < 1000; i++) {
+            if (!t.isMax()){
+                t.raiseFlatBed();
+            }
+        }
         t.startEngine();
+        t.gas(1);
         t.move();
-        assertTrue(c.getX()>0);
+        assertTrue(c.getX()>0 && c2.getX() == 100);
     }
 
 
     @Test
     public void startEngine() {
-        ScaniaTruck t = new ScaniaTruck();
+        ScaniaTruck t = new ScaniaTruck(0,0,0);
         t.raiseFlatBed();
         t.startEngine();
         System.out.println(t.getCurrentSpeed());
@@ -88,7 +100,7 @@ public class VehicleTest {
 
     @Test
     public void incrementSpeed() {
-        Vehicle c = new Volvo240();
+        Vehicle c = new Volvo240(0,0,0);
         c.startEngine();
         c.gas(1);
         double d = c.getCurrentSpeed();
@@ -98,18 +110,18 @@ public class VehicleTest {
 
     @Test
     public void color() {
-        ScaniaTruck t = new ScaniaTruck();
+        ScaniaTruck t = new ScaniaTruck(0,0,0);
         t.setColor(Color.red);
         assertSame(t.getColor(), Color.red);
     }
     @Test
     public void turbo() {
-        Saab95 sab1 = new Saab95();
+        Saab95 sab1 = new Saab95(0,0,0);
         sab1.setTurboOn();
         sab1.startEngine();
         sab1.gas(1);
         sab1.move();
-        Saab95 sab2 = new Saab95();
+        Saab95 sab2 = new Saab95(0,0,0);
         sab2.setTurboOff();
         sab2.startEngine();
         sab2.gas(1);
