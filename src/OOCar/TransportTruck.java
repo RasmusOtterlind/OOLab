@@ -15,8 +15,8 @@ public class TransportTruck extends Vehicle implements IStorage{
      */
     private Storage storage = new Storage<>(10, Storage.UnloadOrder.firstInFirstOut, 3.0);
 
-    TransportTruck() {
-        super(2, 200, 0, Color.magenta, "TransportTruck-2000", 0.05,10);
+    TransportTruck(double x, double y, double direction) {
+        super(x, y, direction,2, 200, 0, Color.magenta, "TransportTruck-2000", 0.05,10);
     }
 
     /**
