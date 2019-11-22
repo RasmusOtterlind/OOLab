@@ -56,6 +56,15 @@ class Storage <T extends Vehicle>{
         //The car should be unloaded to a coordinate somewhere behind the storage.
         //(Distance selectable when creating storage?)
     }
+    public Vehicle unloadStorage(double x,double y,double direction,T vehicle){
+        if(!currentStorage.isEmpty() && unloadOrder == UnloadOrder.selected){
+            currentFillAmount -= vehicle.getSize();
+            currentStorage.remove(vehicle);
+            vehicle.updatePosition(x-10,y-10,direction,false);
+            return vehicle;
+        }
+        return null;
+    }
 
     /**
      * Calls updatePosition on all vehicles inside the storage,

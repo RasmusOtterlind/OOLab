@@ -10,4 +10,7 @@ public class ServiceStation <T extends Vehicle> extends WorldObject {
     public void load(T vehicle){
         storage.addToStorage(vehicle, vehicle.getX(), vehicle.getY(), vehicle.getDirection());
     }
+    public void unloadStorage(T vehicle){
+        storage.unloadStorage(getX(),getY(),getDirection(),vehicle);
+    }
 }
