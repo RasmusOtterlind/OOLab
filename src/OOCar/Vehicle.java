@@ -26,8 +26,8 @@ public abstract class Vehicle extends WorldObject implements Movable{
      * @param turnSpeed How fast the vehicle turns.
      * @param size The "Size" of the vehicle.
      */
-    Vehicle(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, double turnSpeed, double size) {
-        super(0, 0, 0);
+    Vehicle(double x, double y, double direction, int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, double turnSpeed, double size) {
+        super(x, y, direction);
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = currentSpeed;

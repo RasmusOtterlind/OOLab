@@ -11,8 +11,8 @@ public class ScaniaTruck extends Vehicle {
      */
     private Flatbed flatbed = new Flatbed(100, 100, 0);
 
-    ScaniaTruck() {
-        super(2, 110, 0, Color.BLACK, "ScaniaTruck",0.2,3);
+    ScaniaTruck(double x, double y, double direction) {
+        super(x, y, direction,2, 110, 0, Color.BLACK, "ScaniaTruck",0.2,3);
     }
 
     /**
@@ -21,7 +21,7 @@ public class ScaniaTruck extends Vehicle {
      */
     @Override
     public double speedFactor() {
-        if (isMax()) {
+        if (isFlatBedMax()) {
             return getEnginePower() * 0.01;
         }
         return 0;
@@ -45,7 +45,7 @@ public class ScaniaTruck extends Vehicle {
      * Created a method to use a method in the class Flatbed.
      * @return
      */
-    public boolean isMax() {return flatbed.isMax();}
+    public boolean isFlatBedMax() {return flatbed.isMax();}
 
     /**
      * Created a method to use a method in the class Flatbed.
