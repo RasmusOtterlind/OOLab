@@ -20,19 +20,28 @@ public class TransportTruck extends Vehicle implements IStorage {
     }
 
     /**
-     * Add vehicle to the storage
+     * Load vehicle on the transport truck if the flatbed's position is at min (opened) and if the vehicle is not already loaded.
+     * Using a method in the class Storage (Delegation).
      * @param vehicle The vehicle you want to load.
      */
     public void addToStorage(Vehicle vehicle){
-        if (isLowest() && vehicle.getIsLoadedOn()){
+        if (isLowest() && !vehicle.getIsLoadedOn()){
             storage.addToStorage(vehicle, getX(), getY(), getDirection());
         }
     }
 
+    /**
+     * Created a method to use a method in Storage (Delegation).
+     * Sets the stored vehicles to the same direction and coordinates as the transport truck's.
+     */
     public void moveStorage() {
         storage.moveStorage(getX(), getY(), getDirection());
     }
 
+    /**
+     * Makes a vehicle unloaded.
+     * @return
+     */
     public Vehicle unloadStorage() {
          return storage.unloadStorage(getX(),getY(),getDirection());
     }
