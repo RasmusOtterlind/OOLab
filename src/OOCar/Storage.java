@@ -17,7 +17,7 @@ class Storage <T extends Vehicle>{
     }
     private double maxSpace;
     private double largestLoadingSize;
-    private double loadingRadius = 10;
+    private double loadingRadius;
     private double currentFillAmount = 0;
     private UnloadOrder unloadOrder;
     private List<T> currentStorage = new ArrayList<>();
@@ -28,10 +28,11 @@ class Storage <T extends Vehicle>{
      * @param unloadOrder The order to unload vehicles from the storage.
      * @param largestLoadingSize The largest vehicle size a storage can receive.
      */
-    Storage(int maxSpace, UnloadOrder unloadOrder, double largestLoadingSize) { //Should probably create value of largestLoadingSize in here too
+    Storage(int maxSpace, UnloadOrder unloadOrder, double largestLoadingSize, double loadingRadius) { //Should probably create value of largestLoadingSize in here too
         this.maxSpace = maxSpace;
         this.unloadOrder = unloadOrder;
         this.largestLoadingSize = largestLoadingSize;
+        this.loadingRadius = loadingRadius;
     }
 
     /**
@@ -42,10 +43,7 @@ class Storage <T extends Vehicle>{
      * @return true/false
      */
     private boolean inRadius(double x ,double y,Vehicle vehicle){
-        if(Math.abs(x-vehicle.getX()) < loadingRadius&& Math.abs(y-vehicle.getY())<loadingRadius){
-            return true;
-        }
-        return false;
+        return Math.abs(x - vehicle.getX()) < loadingRadius && Math.abs(y - vehicle.getY()) < loadingRadius;
     }
 
     /**
@@ -68,28 +66,24 @@ class Storage <T extends Vehicle>{
      * @param x The loaded vehicle's and transport/service station's x-coordinate.
      * @param y The loaded vehicle's and transport/service station's y-coordinate.
      * @param direction The loaded vehicle's and transport/service station's direction.
-     * @return Vehicle
      */
-   public Vehicle unloadStorage(double x,double y,double direction) {
+    void unloadStorage(double x, double y, double direction) {
         if(!currentStorage.isEmpty()) {
             if(unloadOrder == UnloadOrder.firstInFirstOut){
                 currentFillAmount -= currentStorage.get(currentStorage.size()-1).getSize();
                 currentStorage.get(currentStorage.size()-1).updatePosition(x-10,y-10,direction,false);
                 Vehicle v = currentStorage.get(currentStorage.size()-1);
                 currentStorage.remove(currentStorage.size()-1);
-                return v;
             }
             else if(unloadOrder == UnloadOrder.lastInFirstOut){
                 currentFillAmount -= currentStorage.get(0).getSize();
                 currentStorage.get(0).updatePosition(x-10,y-10,direction,false);
                 Vehicle v = currentStorage.get(0);
                 currentStorage.remove(0);
-                return v;
             }
 
         }
-        return null;
-        //The car should be unloaded to a coordinate somewhere behind the storage.
+       //The car should be unloaded to a coordinate somewhere behind the storage.
         //(Distance selectable when creating storage?)
     }
     /**
@@ -98,16 +92,13 @@ class Storage <T extends Vehicle>{
      * @param y The loaded vehicle's and transport/service station's y-coordinate.
      * @param direction The loaded vehicle's and transport/service station's direction.
      * @param vehicle the specific vehicle you want to unload
-     * @return Vehicle
      */
-    public Vehicle unloadStorage(double x,double y,double direction,T vehicle){
+    void unloadStorage(double x, double y, double direction, T vehicle){
         if(!currentStorage.isEmpty() && unloadOrder == UnloadOrder.selected){
             currentFillAmount -= vehicle.getSize();
             currentStorage.remove(vehicle);
             vehicle.updatePosition(x-10,y-10,direction,false);
-            return vehicle;
         }
-        return null;
     }
 
     /**

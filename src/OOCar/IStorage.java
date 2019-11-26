@@ -15,5 +15,5 @@ interface IStorage<T extends Vehicle> {
      * @param vehicle
      */
     void addToStorage(T vehicle);
-    Vehicle unloadStorage();
+    void unloadStorage();
 }

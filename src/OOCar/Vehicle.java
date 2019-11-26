@@ -62,11 +62,19 @@ public abstract class Vehicle extends WorldObject implements Movable{
      * @param y
      * @param direction
      */
-    void updatePosition(double x, double y, double direction,boolean isLoadedOn) {
+    void updatePosition(double x, double y, double direction, boolean isLoadedOn) {
         setX(x);
         setY(y);
         setDirection(direction);
         this.isLoadedOn = isLoadedOn;
+    }
+
+    /**
+     * Vehicle asks to unload itself from storage, only possible if Storage unload type is "selected".
+     */
+    public void askToUnload() {
+
+        System.out.println();
     }
 
     /**

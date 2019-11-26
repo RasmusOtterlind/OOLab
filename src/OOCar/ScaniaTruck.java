@@ -17,11 +17,11 @@ public class ScaniaTruck extends Vehicle {
 
     /**
      * Increases the speed if the flatbed is in its max position (closed).
-     * @return
+     * @return speedFactor for current vehicle
      */
     @Override
     public double speedFactor() {
-        if (isFlatBedMax()) {
+        if (isMax()) {
             return getEnginePower() * 0.01;
         }
         return 0;
@@ -42,14 +42,14 @@ public class ScaniaTruck extends Vehicle {
     }
 
     /**
-     * Created a method to use a method in the class Flatbed.
-     * @return
+     * A method to use a method in the class Flatbed.
+     * @return if the flatbed is fully raised returns true.
      */
-    public boolean isFlatBedMax() {return flatbed.isMax();}
+    public boolean isMax() {return flatbed.isMax();}
 
     /**
-     * Created a method to use a method in the class Flatbed.
-     * @return
+     * A method to use a method in the class Flatbed.
+     * @return if the flatbed is lowest return true.
      */
     public boolean isLowest() {return flatbed.isLowest();}
 

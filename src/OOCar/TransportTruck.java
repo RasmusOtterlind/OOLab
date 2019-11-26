@@ -13,7 +13,7 @@ public class TransportTruck extends Vehicle implements IStorage{
     /**
      *  Composition: Creating new object storage to reach method in the class Storage with the help of delegation.
      */
-    private Storage storage = new Storage<>(10, Storage.UnloadOrder.firstInFirstOut, 3.0);
+    private Storage storage = new Storage<>(10, Storage.UnloadOrder.firstInFirstOut, 3.0, 10);
 
     TransportTruck(double x, double y, double direction) {
         super(x, y, direction,2, 200, 0, Color.magenta, "TransportTruck-2000", 0.05,10);
@@ -40,10 +40,9 @@ public class TransportTruck extends Vehicle implements IStorage{
 
     /**
      * Makes a vehicle unloaded.
-     * @return
      */
-    public Vehicle unloadStorage() {
-         return storage.unloadStorage(getX(),getY(),getDirection());
+    public void unloadStorage() {
+         storage.unloadStorage(getX(),getY(),getDirection());
     }
 
     @Override
@@ -73,15 +72,14 @@ public class TransportTruck extends Vehicle implements IStorage{
     }
 
     /**
-     * checks if the flatbed is up
-     * @return
+     * A method to use a method in the class Flatbed.
+     * @return if the flatbed is fully raised returns true.
      */
     public boolean isMax() {return flatbed.isMax();}
 
     /**
-     * checks if the flatbed is down
-     * @return
+     * A method to use a method in the class Flatbed.
+     * @return if the flatbed is lowest return true.
      */
-
     public boolean isLowest() {return flatbed.isLowest();}
 }
