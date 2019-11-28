@@ -71,8 +71,6 @@ public abstract class Vehicle extends WorldObject implements Movable{
      * Vehicle asks to unload itself from storage, only possible if Storage unload type is "selected".
      */
     public void askToUnload() {
-
-        System.out.println();
     }
 
     /**

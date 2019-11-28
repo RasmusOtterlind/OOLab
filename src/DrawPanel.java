@@ -11,7 +11,7 @@ import javax.swing.*;
 public class DrawPanel extends JPanel{
 
     // Just a single image, TODO: Generalize
-    ArrayList<BufferedImage> images = new ArrayList<>();
+    //ArrayList<BufferedImage> images = new ArrayList<>();
     BufferedImage volvoImage;
     // To keep track of a singel cars position
     ArrayList<Point> points;
@@ -49,7 +49,7 @@ public class DrawPanel extends JPanel{
     // This method is called each time the panel updates/refreshes/repaints itself
     // TODO: Change to suit your needs.
     @Override
-    protected void paintComponent(Graphics g) {
+    protected void paintComponent (Graphics g) {
         super.paintComponent(g);
         for(Point p : points){
             g.drawImage(volvoImage,p.x,p.y,null);

@@ -29,8 +29,8 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
-        cc.cars.add(new Volvo240(1,2,-1));
-        cc.cars.add(new Saab95(100,100,-1));
+        cc.cars.add(new Volvo240(100,100,-1));
+        cc.cars.add(new Saab95(100,200,-1));
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -46,6 +46,7 @@ public class CarController {
         public void actionPerformed(ActionEvent e) {
             for (Vehicle car : cars) {
                 car.move();
+                changeDirectionIfOut(car);
                 //int x = (int) Math.round(car.getX());
                 //int y = (int) Math.round(car.getY());
                 // repaint() calls the paintComponent method of the panel
@@ -74,12 +75,10 @@ public class CarController {
             car.brake(brake);
         }
    }
-   private void changeDirection(WorldObject vehicle){
+   private void changeDirectionIfOut(WorldObject vehicle){
         if(checkIfOut(vehicle)){
-            vehicle.setDirection(vehicle.getDirection()-Math.PI);
+            vehicle.setDirection(vehicle.getDirection()+Math.PI);
         }
-
-
    }
    private boolean checkIfOut(WorldObject entity){
         if((entity.getX()<=50|| entity.getX()>=750) || entity.getY()<=30 || entity.getY()>=770){
