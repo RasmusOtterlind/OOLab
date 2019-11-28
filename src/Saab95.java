@@ -1,5 +1,3 @@
-package OOCar;
-
 import java.awt.*;
 
 /**
@@ -9,7 +7,7 @@ public class Saab95 extends Vehicle {
 
     private boolean turboOn;
     public Saab95(double x, double y, double direction){
-        super(x, y, direction,2,125.0,0.0,Color.red,"Saab95",1.0,1);
+        super(x, y, direction,2,125.0,0.0,Color.red,"Saab95",0.4,1);
         stopEngine();
     }
     public void setTurboOn(){ turboOn = true; }

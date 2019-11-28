@@ -1,5 +1,3 @@
-package OOCar;
-
 /**
  * An interface to help use Polymorphism when moving loaded vehicles
  * @param <T>

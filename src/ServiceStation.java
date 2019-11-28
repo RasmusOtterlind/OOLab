@@ -1,12 +1,10 @@
-package OOCar;
-
 /**
  * A subclass to WorldObject.
  * A class that can be specified to only receive vehicles of specific types.
  * @param <T>
  */
 public class ServiceStation <T extends Vehicle> extends WorldObject {
-    private Storage<T> storage = new Storage(10, Storage.UnloadOrder.selected, 2);
+    private Storage<T> storage = new Storage(10, Storage.UnloadOrder.selected, 2,10);
 
     public ServiceStation(double x, double y, double direction) {
         super(x, y, direction);

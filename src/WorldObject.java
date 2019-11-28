@@ -1,5 +1,3 @@
-package OOCar;
-
 /**
  * A superClass that makes objects trackable and placeable in the world
  */

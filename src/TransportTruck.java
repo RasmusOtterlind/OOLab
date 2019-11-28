@@ -1,5 +1,3 @@
-package OOCar;
-
 import java.awt.*;
 
 /**

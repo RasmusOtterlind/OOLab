@@ -1,5 +1,3 @@
-package OOCar;
-
 import java.awt.*;
 
 /**
@@ -51,9 +49,9 @@ public abstract class Vehicle extends WorldObject implements Movable{
      * Moves the vehicle based on it's current speed and direction.
      */
     public void move(){
-
+        System.out.println(getCurrentSpeed());
         setX(getX() + getCurrentSpeed()* Math.cos(getDirection()));
-        setY(getY() + getCurrentSpeed()* Math.sin(getDirection()));
+        setY(getY() + getCurrentSpeed()* Math.sin(getDirection())*(-1));
     }
 
     /**
@@ -95,6 +93,7 @@ public abstract class Vehicle extends WorldObject implements Movable{
      */
     private void incrementSpeed(double amount){
         setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower()));
+        System.out.println("hej");
     }
 
     /**
@@ -115,7 +114,7 @@ public abstract class Vehicle extends WorldObject implements Movable{
      * Start's the engine with a bit of speed if it's not loaded on another object.
      */
     public void startEngine(){
-        if(!isLoadedOn && !engineRunning) {
+        if(!isLoadedOn) {
             engineRunning = true;
             gas(0.1);
         }
@@ -135,7 +134,10 @@ public abstract class Vehicle extends WorldObject implements Movable{
      * @param amount
      */
     public void gas(double amount){
+        System.out.println("running = "+engineRunning);
+
         if(engineRunning && amount>=0 && amount<=1){
+            System.out.println("kom in");
             incrementSpeed(amount);
         }
     }
