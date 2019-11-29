@@ -23,6 +23,6 @@ public class ServiceStation <T extends Vehicle> extends WorldObject {
      * @param vehicle the vehicle
      */
     public void unloadStorage(T vehicle){
-        storage.unloadStorage(getX(),getY(),getDirection(),vehicle);
+        storage.unloadSpecificStorage(getX(),getY(),getDirection(),vehicle);
     }
 }
