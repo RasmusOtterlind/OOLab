@@ -3,14 +3,14 @@ import java.awt.*;
 /**
  * A subclass to Vehicle.
  */
-public class ScaniaTruck extends Vehicle {
+public class ScaniaTruck extends Vehicle implements IFlatBed{
     /**
      * Composition: Creating new object flatbed to reach method in the class Flatbed with the help of delegation.
      */
     private Flatbed flatbed = new Flatbed(100, 100, 0);
 
     ScaniaTruck(double x, double y, double direction) {
-        super(x, y, direction,2, 110, 0, Color.BLACK, "ScaniaTruck",0.2,3);
+        super(x, y, direction,2, 110, 0, Color.BLACK, "Scania",0.2,3);
     }
 
     /**

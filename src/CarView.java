@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
  **/
 
 public class CarView extends JFrame{
-    private static final int X = 800;
+    private static final int X = 800; //2880 x 1800
     private static final int Y = 800;
 
     // The controller member
@@ -101,22 +101,13 @@ public class CarView extends JFrame{
 
         // This actionListener is for the gas button only
         // TODO: Create more for each component as necessary
-        gasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.gas(gasAmount);
-            }
-        });
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {carC.startCars(); }
-        });
-        brakeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.brake(gasAmount);
-            }
-        });
+        gasButton.addActionListener(e -> carC.gas(gasAmount));
+        startButton.addActionListener(e -> carC.startCars());
+        brakeButton.addActionListener(e -> carC.brake(gasAmount));
+        turboOnButton.addActionListener(e -> carC.turboOn());
+        turboOffButton.addActionListener(e -> carC.turboOff());
+        liftBedButton.addActionListener(e -> carC.liftBed());
+        lowerBedButton.addActionListener(e ->carC.lowerBed());
 
 
         // Make the frame pack all it's components by respecting the sizes if possible.

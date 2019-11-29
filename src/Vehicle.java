@@ -14,6 +14,9 @@ public abstract class Vehicle extends WorldObject implements Movable{
      private double size;
      private boolean isLoadedOn = false;
      private boolean engineRunning = false;
+
+
+
     /**
      * The Constructor takes all the parameters mentioned.
      * @param nrDoors Number of doors on the vehicle.
@@ -42,6 +45,8 @@ public abstract class Vehicle extends WorldObject implements Movable{
     double getSize() {return size;}
     boolean getEngineRunning(){ return engineRunning;}
     boolean getIsLoadedOn(){return isLoadedOn;}
+    public String getModelName() { return modelName;}
+
     //private void setLoadedOn(){isLoadedOn = !isLoadedOn;}
 
 

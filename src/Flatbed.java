@@ -1,7 +1,7 @@
 /**
  * A class for flatbed used in TransportTruck and ScaniaTruck with the help of delegation.
  */
-class Flatbed {
+class Flatbed{
     /**
      * flatbedAngle used in method: setFlatbedAngle().
      */
@@ -26,7 +26,7 @@ class Flatbed {
      * Raises the flatbed if the vehicle's speed equals or is lower than the max speed lock and the flatbed angle is smaller than max.
      * @param currentSpeed The vehicle's current speed.
      */
-    void raiseFlatBed(double currentSpeed) {
+   public void raiseFlatBed(double currentSpeed) {
         if(flatBedAngle < flatBedMaxAngle && currentSpeed <= maxSpeedLock) {
             setFlatBedAngle(flatBedMovementSpeed);
         }
@@ -36,7 +36,7 @@ class Flatbed {
      * Lowers the flatbed if the vehicle's speed equals or is lower than the max speed lock and the flatbed angle is larger than min.
      * @param currentSpeed The vehicle's current speed.
      */
-    void lowerFlatBed(double currentSpeed) {
+   public void lowerFlatBed(double currentSpeed) {
         if(flatBedAngle>0 && currentSpeed <= maxSpeedLock) {
             setFlatBedAngle(-flatBedMovementSpeed); }
     }
@@ -45,13 +45,13 @@ class Flatbed {
      * Returns true if the flatbed angle is max.
      * @return true/false
      */
-    boolean isMax() { return flatBedAngle>=flatBedMaxAngle; }
+    public boolean isMax() { return flatBedAngle>=flatBedMaxAngle; }
 
     /**
      * Returns true if the flatbed angle is min.
      * @return true/false
      */
-    boolean isLowest() { return flatBedAngle<=0; }
+    public boolean isLowest() { return flatBedAngle<=0; }
 
     /**
      * Sets the flatbed angle: closed/opened.

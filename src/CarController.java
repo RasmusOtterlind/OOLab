@@ -44,7 +44,7 @@ public class CarController {
     * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (Vehicle car : cars) {
+            for (Vehicle car : cars){
                 car.move();
                 changeDirectionIfOut(car);
                 //int x = (int) Math.round(car.getX());
@@ -73,17 +73,48 @@ public class CarController {
        double brake = ((double) amount) / 100;
         for (Vehicle car : cars ){
             car.brake(brake);
+            System.out.println("hälsa mormor");
         }
    }
+   void turboOn(){
+        for(Vehicle vehicle : cars) {
+            if (vehicle instanceof Saab95) {
+                ((Saab95)vehicle).setTurboOn();
+            }
+        }
+   }
+   void turboOff(){
+       for(Vehicle vehicle : cars) {
+           if (vehicle instanceof Saab95) {
+               ((Saab95)vehicle).setTurboOff();
+           }
+       }
+   }
+   void liftBed(){
+        for(Vehicle vehicle : cars){
+            if (vehicle instanceof IFlatBed) {
+                ((IFlatBed)vehicle).raiseFlatBed();
+            }
+        }
+   }
+    void lowerBed(){
+        for(Vehicle vehicle : cars){
+            if (vehicle instanceof IFlatBed) {
+                ((IFlatBed)vehicle).lowerFlatBed();
+            }
+        }
+    }
+
    private void changeDirectionIfOut(WorldObject vehicle){
         if(checkIfOut(vehicle)){
             vehicle.setDirection(vehicle.getDirection()+Math.PI);
         }
    }
    private boolean checkIfOut(WorldObject entity){
-        if((entity.getX()<=50|| entity.getX()>=750) || entity.getY()<=30 || entity.getY()>=770){
+        if((entity.getX()<=50|| entity.getX()>=750) || entity.getY()<=30 || entity.getY()>=500){
             return true;
         }
         return false;
    }
+
 }
