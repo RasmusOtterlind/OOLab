@@ -54,7 +54,6 @@ public abstract class Vehicle extends WorldObject implements Movable{
      * Moves the vehicle based on it's current speed and direction.
      */
     public void move(){
-        System.out.println(getCurrentSpeed());
         setX(getX() + getCurrentSpeed()* Math.cos(getDirection()));
         setY(getY() + getCurrentSpeed()* Math.sin(getDirection())*(-1));
     }
@@ -137,10 +136,7 @@ public abstract class Vehicle extends WorldObject implements Movable{
      * @param amount
      */
     public void gas(double amount){
-        System.out.println("running = "+engineRunning);
-
         if(engineRunning && amount>=0 && amount<=1){
-            System.out.println("kom in");
             incrementSpeed(amount);
         }
     }

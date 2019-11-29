@@ -31,6 +31,7 @@ public class CarController {
 
         cc.cars.add(new Volvo240(100,100,-1));
         cc.cars.add(new Saab95(100,200,-1));
+        cc.cars.add(new ScaniaTruck(200,200,-1));
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -103,6 +104,12 @@ public class CarController {
                 ((IFlatBed)vehicle).lowerFlatBed();
             }
         }
+    }
+    void stopCars(){
+        for(Vehicle vehicle : cars){
+            vehicle.stopEngine();
+        }
+
     }
 
    private void changeDirectionIfOut(WorldObject vehicle){

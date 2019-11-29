@@ -108,6 +108,7 @@ public class CarView extends JFrame{
         turboOffButton.addActionListener(e -> carC.turboOff());
         liftBedButton.addActionListener(e -> carC.liftBed());
         lowerBedButton.addActionListener(e ->carC.lowerBed());
+        stopButton.addActionListener(e -> carC.stopCars());
 
 
         // Make the frame pack all it's components by respecting the sizes if possible.
