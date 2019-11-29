@@ -13,15 +13,15 @@ public class CarController {
     // member fields:
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
-    private final int delay = 50;
+    private final int delay = 13;
     // The timer is started with an listener (see below) that executes the statements
     // each step between delays.
     private Timer timer = new Timer(delay, new TimerListener());
 
     // The frame that represents this instance View of the MVC pattern
-    CarView frame;
+    private CarView frame;
     // A list of cars, modify if needed
-    ArrayList<Vehicle> cars = new ArrayList<>();
+    private ArrayList<Vehicle> cars = new ArrayList<>();
 
     //methods:
 
@@ -29,9 +29,9 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
-        cc.cars.add(new Volvo240(100,100,-1));
-        cc.cars.add(new Saab95(100,200,-1));
-        cc.cars.add(new ScaniaTruck(200,200,-1));
+        cc.cars.add(new Volvo240(100,100,0));
+        cc.cars.add(new Saab95(100,200,0));
+        cc.cars.add(new ScaniaTruck(200,200,Math.PI));
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -118,7 +118,7 @@ public class CarController {
         }
    }
    private boolean checkIfOut(WorldObject entity){
-        if((entity.getX()<=50|| entity.getX()>=750) || entity.getY()<=30 || entity.getY()>=500){
+        if((entity.getX()<=0|| entity.getX()>=700) || entity.getY()<=30 || entity.getY()>=500){
             return true;
         }
         return false;

@@ -12,12 +12,12 @@ public class DrawPanel extends JPanel{
 
     // Just a single image, TODO: Generalize
     //ArrayList<BufferedImage> images = new ArrayList<>();
-    BufferedImage volvoImage;
-    BufferedImage saabImage;
-    BufferedImage scaniaImage;
+    private BufferedImage volvoImage;
+    private BufferedImage saabImage;
+    private BufferedImage scaniaImage;
 
     // To keep track of a singel cars position
-    ArrayList<ObjectRenderInfo> objectRenderInfos;
+    private ArrayList<ObjectRenderInfo> objectRenderInfos;
     //Point volvoPoint = new Point(1,2);
 
     // TODO: Make this genereal for all cars
@@ -49,7 +49,7 @@ public class DrawPanel extends JPanel{
     public DrawPanel(int x, int y) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
-        this.setBackground(Color.BLUE);
+        this.setBackground(Color.PINK);
         // Print an error message in case file is not found with a try/catch block
         try {
             // You can remove the "pics" part if running outside of IntelliJ and

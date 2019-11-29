@@ -117,8 +117,11 @@ public abstract class Vehicle extends WorldObject implements Movable{
      */
     public void startEngine(){
         if(!isLoadedOn) {
-            engineRunning = true;
-            gas(0.1);
+            if(!engineRunning) {
+                engineRunning = true;
+                gas(0.1);
+            }
+
         }
     }
 

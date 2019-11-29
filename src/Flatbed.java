@@ -20,6 +20,7 @@ class Flatbed{
         this.flatBedMovementSpeed = flatBedMovementSpeed;
         this.flatBedMaxAngle = flatBedMaxAngle;
         this.maxSpeedLock = maxSpeedLock;
+        this.flatBedAngle = flatBedMaxAngle;
     }
 
     /**
