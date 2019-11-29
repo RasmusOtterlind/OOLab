@@ -40,7 +40,7 @@ public class TransportTruck extends Vehicle implements IStorage,IFlatBed{
      * Makes a vehicle unloaded.
      */
     public void unloadStorage() {
-         storage.unloadStorage(getX(),getY(),getDirection());
+         storage.unloadSpecificStorage(getX(),getY(),getDirection());
     }
 
     @Override

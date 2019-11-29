@@ -65,7 +65,7 @@ class Storage <T extends Vehicle>{
      * @param y The loaded vehicle's and transport/service station's y-coordinate.
      * @param direction The loaded vehicle's and transport/service station's direction.
      */
-    void unloadStorage(double x, double y, double direction) {
+    void unloadSpecificStorage(double x, double y, double direction) {
         if(!currentStorage.isEmpty()) {
             if(unloadOrder == UnloadOrder.firstInFirstOut){
                 currentFillAmount -= currentStorage.get(currentStorage.size()-1).getSize();
@@ -91,8 +91,8 @@ class Storage <T extends Vehicle>{
      * @param direction The loaded vehicle's and transport/service station's direction.
      * @param vehicle the specific vehicle you want to unload
      */
-    void unloadStorage(double x, double y, double direction, T vehicle){
-        if(!currentStorage.isEmpty() && unloadOrder == UnloadOrder.selected){
+    void unloadSpecificStorage(double x, double y, double direction, T vehicle){
+        if(!currentStorage.isEmpty() && unloadOrder == UnloadOrder.selected && currentStorage.contains(vehicle)){
             currentFillAmount -= vehicle.getSize();
             currentStorage.remove(vehicle);
             vehicle.updatePosition(x-10,y-10,direction,false);
