@@ -90,15 +90,15 @@ public class CarController {
    }
    void turboOn(){
         for(IVehicle vehicle : vehicles) {
-            if (vehicle instanceof Saab95) {
-                ((Saab95)vehicle).setTurboOn();
+            if (vehicle instanceof ITurbo) {
+                ((ITurbo)vehicle).setTurboOn();
             }
         }
    }
    void turboOff(){
        for(IVehicle vehicle : vehicles) {
-           if (vehicle instanceof Saab95) {
-               ((Saab95)vehicle).setTurboOff();
+           if (vehicle instanceof ITurbo) {
+               ((ITurbo)vehicle).setTurboOff();
            }
        }
    }

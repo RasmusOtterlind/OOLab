@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Saab95 a subclass to car. A car with Turbo and some preset characteristics
  */
-public class Saab95 extends Vehicle {
+ class Saab95 extends Vehicle implements ITurbo {
 
     private boolean turboOn;
     Saab95(double x, double y, double direction){
