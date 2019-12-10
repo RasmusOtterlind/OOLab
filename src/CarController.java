@@ -31,10 +31,18 @@ public class CarController {
 
         cc.cars.add(new Volvo240(100,100,0));
         cc.cars.add(new Saab95(100,200,0));
-        cc.cars.add(new ScaniaTruck(200,200,Math.PI));
+        cc.cars.add(new ScaniaTruck(100,300,0));
 
         // Start a new view and send a reference of self
-        cc.frame = new CarView("CarSim 1.0", cc);
+        cc.frame = new CarView("CarSim 1.0");
+        cc.frame.gasButton.addActionListener(e -> cc.gas(cc.frame.getGasAmount()));
+        cc.frame.startButton.addActionListener(e -> cc.startCars());
+        cc.frame.brakeButton.addActionListener(e -> cc.brake(cc.frame.getGasAmount()));
+        cc.frame.turboOnButton.addActionListener(e ->cc.turboOn());
+        cc.frame.turboOffButton.addActionListener(e -> cc.turboOff());
+        cc.frame.liftBedButton.addActionListener(e -> cc.liftBed());
+        cc.frame.lowerBedButton.addActionListener(e ->cc.lowerBed());
+        cc.frame.stopButton.addActionListener(e -> cc.stopCars());
 
         // Start the timer
         cc.timer.start();
@@ -53,7 +61,7 @@ public class CarController {
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
             }
-            frame.drawPanel.moveit(cars);
+            frame.drawPanel.moveIt(cars);
         }
     }
 
@@ -74,7 +82,6 @@ public class CarController {
        double brake = ((double) amount) / 100;
         for (Vehicle car : cars ){
             car.brake(brake);
-            System.out.println("hälsa mormor");
         }
    }
    void turboOn(){

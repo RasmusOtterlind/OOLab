@@ -1,6 +1,9 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Class used to render cars on the map
+ */
 public class ObjectRenderInfo {
     private Point point;
     private BufferedImage image;

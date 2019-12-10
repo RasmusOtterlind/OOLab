@@ -16,12 +16,12 @@ public class DrawPanel extends JPanel{
     private BufferedImage saabImage;
     private BufferedImage scaniaImage;
 
-    // To keep track of a singel cars position
-    private ArrayList<ObjectRenderInfo> objectRenderInfos;
+    // To keep track of a snigel cars position
+    private ArrayList<ObjectRenderInfo>  objectRenderInfos;
     //Point volvoPoint = new Point(1,2);
 
     // TODO: Make this genereal for all cars
-    void moveit(List<Vehicle> vehicles){
+    void moveIt(List<Vehicle> vehicles){
         objectRenderInfos = new ArrayList<>();
         for (Vehicle v : vehicles){
             Point p = (new Point((int)Math.round(v.getX()),(int)Math.round(v.getY())));
@@ -37,10 +37,7 @@ public class DrawPanel extends JPanel{
                 return saabImage;
             case "Scania":
                 return scaniaImage;
-
         }
-
-
         return null;
     }
 

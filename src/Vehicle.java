@@ -110,7 +110,7 @@ public abstract class Vehicle extends WorldObject implements Movable{
      * An abstract method that requires double as return value used when increasing speed.
      * @return
      */
-    public abstract double speedFactor();
+    abstract double speedFactor();
 
     /**
      * Start's the engine with a bit of speed if it's not loaded on another object.

@@ -18,7 +18,6 @@ public class CarView extends JFrame{
     private static final int Y = 800;
 
     // The controller member
-    private CarController carC;
     DrawPanel drawPanel = new DrawPanel(X, Y-240);
     private JPanel controlPanel = new JPanel();
 
@@ -26,18 +25,22 @@ public class CarView extends JFrame{
     private JSpinner gasSpinner = new JSpinner();
     private int gasAmount = 0;
     private JLabel gasLabel = new JLabel("Amount of gas");
-    private JButton gasButton = new JButton("Gas");
-    private JButton brakeButton = new JButton("Brake");
-    private JButton turboOnButton = new JButton("Saab Turbo on");
-    private JButton turboOffButton = new JButton("Saab Turbo off");
-    private JButton liftBedButton = new JButton("Scania Lift Bed");
-    private JButton lowerBedButton = new JButton("Lower Lift Bed");
-    private JButton startButton = new JButton("Start all cars");
-    private JButton stopButton = new JButton("Stop all cars");
+     JButton gasButton = new JButton("Gas");
+     JButton brakeButton = new JButton("Brake");
+     JButton turboOnButton = new JButton("Saab Turbo on");
+     JButton turboOffButton = new JButton("Saab Turbo off");
+     JButton liftBedButton = new JButton("Scania Lift Bed");
+     JButton lowerBedButton = new JButton("Lower Lift Bed");
+     JButton startButton = new JButton("Start all cars");
+     JButton stopButton = new JButton("Stop all cars");
+
+    public int getGasAmount() {
+        return gasAmount;
+    }
 
     // Constructor
-    public CarView(String framename, CarController cc){
-        this.carC = cc;
+    public CarView(String framename){
+
         initComponents(framename);
     }
 
@@ -98,6 +101,7 @@ public class CarView extends JFrame{
 
         // This actionListener is for the gas button only
         // TODO: Create more for each component as necessary
+        /*
         gasButton.addActionListener(e -> carC.gas(gasAmount));
         startButton.addActionListener(e -> carC.startCars());
         brakeButton.addActionListener(e -> carC.brake(gasAmount));
@@ -106,11 +110,10 @@ public class CarView extends JFrame{
         liftBedButton.addActionListener(e -> carC.liftBed());
         lowerBedButton.addActionListener(e ->carC.lowerBed());
         stopButton.addActionListener(e -> carC.stopCars());
-
+         */
 
         // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();
-
         // Get the computer screen resolution
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         // Center the frame
