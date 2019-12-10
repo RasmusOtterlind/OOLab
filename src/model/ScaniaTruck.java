@@ -1,9 +1,11 @@
+package model;
+
 import java.awt.*;
 
 /**
  * A subclass to Vehicle.
  */
-public class ScaniaTruck extends Vehicle implements IFlatBed{
+class ScaniaTruck extends Vehicle implements IFlatBed{
     /**
      * Composition: Creating new object flatbed to reach method in the class Flatbed with the help of delegation.
      */

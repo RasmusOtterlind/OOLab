@@ -1,9 +1,11 @@
+package model;
+
 import java.awt.*;
 
 /**
  * Volvo240 a subclass to car. A car with Trimfactor and some preset characteristics
  */
-public class  Volvo240 extends Vehicle {
+ class  Volvo240 extends Vehicle {
 
     private final static double trimFactor = 1.25;
 

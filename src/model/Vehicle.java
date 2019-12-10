@@ -1,9 +1,11 @@
+package model;
+
 import java.awt.*;
 
 /**
  * An abstract vehicle with the basic characteristics of a car.
  */
-public abstract class Vehicle extends WorldObject implements Movable{
+ abstract class Vehicle extends WorldObject implements IVehicle {
 
      private int nrDoors;
      private double enginePower;

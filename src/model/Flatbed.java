@@ -1,3 +1,5 @@
+package model;
+
 /**
  * A class for flatbed used in TransportTruck and ScaniaTruck with the help of delegation.
  */

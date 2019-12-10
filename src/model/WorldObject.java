@@ -1,7 +1,9 @@
+package model;
+
 /**
  * A superClass that makes objects trackable and placeable in the world
  */
-public abstract class WorldObject {
+ abstract class WorldObject {
     private double x;
     private double y;
     private double direction;
@@ -19,11 +21,11 @@ public abstract class WorldObject {
         this.direction = direction;
     }
 
-    protected double getX() {return x;}
-    protected double getY() {return y;}
+    public double getX() {return x;}
+    public double getY() {return y;}
 
-    protected double getDirection() { return direction; }
-    protected void setDirection(double direction) { this.direction = direction;}
+    public double getDirection() { return direction; }
+    public void setDirection(double direction) { this.direction = direction;}
 
     protected void setX(double x) { this.x = x; }
     protected void setY(double y) { this.y = y; }

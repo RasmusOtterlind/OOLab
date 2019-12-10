@@ -1,3 +1,6 @@
+import model.IVehicle;
+
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -21,15 +24,15 @@ public class DrawPanel extends JPanel{
     //Point volvoPoint = new Point(1,2);
 
     // TODO: Make this genereal for all cars
-    void moveIt(List<Vehicle> vehicles){
+    void moveIt(List<IVehicle> vehicles){
         objectRenderInfos = new ArrayList<>();
-        for (Vehicle v : vehicles){
+        for (IVehicle v : vehicles){
             Point p = (new Point((int)Math.round(v.getX()),(int)Math.round(v.getY())));
             BufferedImage image = getVehicleImg(v);
             objectRenderInfos.add(new ObjectRenderInfo(p,image));
         }
     }
-    private BufferedImage getVehicleImg(Vehicle vehicle){
+    private BufferedImage getVehicleImg(IVehicle vehicle){
         switch (vehicle.getModelName()){
             case "Volvo240":
                 return volvoImage;
