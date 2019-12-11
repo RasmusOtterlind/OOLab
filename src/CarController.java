@@ -32,10 +32,11 @@ public class CarController {
     // each step between delays.
     //private Timer timer = new Timer(delay, new TimerListener());
     // The frame that represents this instance View of the MVC pattern
-    private CarView frame;
+    CarView frame;
     // A list of cars, modify if needed
-    private CarModel model = new CarModel();
-    public CarController() {
+    private CarModel model;
+    public CarController(CarModel model) {
+        this.model = model;
         buttonsList.add(gasButton);
         buttonsList.add(brakeButton);
         buttonsList.add(turboOnButton);

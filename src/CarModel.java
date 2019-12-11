@@ -1,17 +1,24 @@
 import model.IFlatBed;
 import model.ITurbo;
 import model.IVehicle;
+import model.VehicleFactory;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.nio.channels.Channel;
 import java.util.ArrayList;
 
 public class CarModel {
     private ArrayList<IVehicle> vehicles = new ArrayList<>();
+    private ArrayList<AnimateListener> listeners = new ArrayList<>();
 
+    public CarModel(){
+        vehicles.add(VehicleFactory.createVolvo240(100,200,0));
+    }
 
-
-
-
-
+    private final int delay = 13;
+    private Timer timer = new Timer(delay, new TimerListener());
     public void gas(int amount) {
         double gas = ((double) amount) / 100;
         for (IVehicle car : vehicles
@@ -76,4 +83,24 @@ public class CarModel {
         }
         return false;
     }
+    private class TimerListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            for (IVehicle vehicle : vehicles){
+                vehicle.move();
+                changeDirectionIfOut(vehicle);
+                //int x = (int) Math.round(car.getX());
+                //int y = (int) Math.round(car.getY());
+                // repaint() calls the paintComponent method of the panel
+
+            }
+           notifyListeners();
+        }
+    }
+    public void addListener(AnimateListener listener){
+        listeners.add(listener);
+    }
+    private void  notifyListeners(){
+        listeners.forEach(AnimateListener::onUpdate);
+    }
+
 }
