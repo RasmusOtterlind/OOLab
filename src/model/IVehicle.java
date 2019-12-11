@@ -46,4 +46,5 @@ package model;
         double getY();
         double getDirection();
         String getModelName();
+        double getCurrentSpeed();
 }

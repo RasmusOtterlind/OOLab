@@ -4,7 +4,7 @@ package model;
          *
          */
 public class  VehicleFactory {
-    public static IVehicle createSabb95(double x, double y, double direction){ return new Saab95(x,y,direction); }
+    public static IVehicle createSaab95(double x, double y, double direction){ return new Saab95(x,y,direction); }
 
     public static IVehicle createVolvo240(double x, double y, double direction){ return new Volvo240(x,y,direction); }
 

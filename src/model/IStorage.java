@@ -4,7 +4,7 @@ package model;
  * An interface to help use Polymorphism when moving loaded vehicles
  * @param <T>
  */
-public interface IStorage<T extends Vehicle> {
+public interface IStorage<T extends Vehicle> extends IVehicle {
     /**
      * method that moves the given vehicles storage
      */
@@ -12,8 +12,8 @@ public interface IStorage<T extends Vehicle> {
 
     /**
      * adds specific vehicle to storage
-     * @param vehicle
+     * @param IVehicle
      */
-    void addToStorage(T vehicle);
+    void addToStorage(T IVehicle);
     void unloadStorage();
 }

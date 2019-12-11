@@ -53,12 +53,14 @@ class Storage <T extends Vehicle>{
      * @param y The transport truck's or service station's y-coordinate.
      * @param direction The transport trucks's or service station's direction.
      */
-    void addToStorage(T vehicle, double x ,double y, double direction) { //Void Boolean instead?
+    boolean addToStorage(T vehicle, double x ,double y, double direction) { //Void Boolean instead?
         if (currentFillAmount + vehicle.getSize() <= maxSpace && vehicle.getSize() <= largestLoadingSize && inRadius(x,y,vehicle)){
             currentFillAmount += vehicle.getSize();
             vehicle.updatePosition(x,y,direction,true);
             currentStorage.add(vehicle);
+            return true;
         }
+        return false;
     }
 
     /**

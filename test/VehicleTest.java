@@ -4,6 +4,7 @@ import model.*;
 import org.junit.Test;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -11,10 +12,11 @@ import static org.junit.Assert.*;
  * test's different functions of the vehicles
  */
 public class VehicleTest {
-/*
+    ArrayList<IVehicle> vehicleList = new ArrayList<>();
+
     @Test
     public void move() {
-        Vehicle c = new Saab95(0,0,0);
+        IVehicle c = VehicleFactory.createSaab95(0,0,0);
         double x = c.getX();
         double y = c.getY();
         c.startEngine();
@@ -26,7 +28,7 @@ public class VehicleTest {
 
     @Test
     public void turnLeft() {                                                                                    //kolla vänster
-        Vehicle c = new Saab95(0,0,0);
+        IVehicle c = VehicleFactory.createSaab95(0,0,0);
         c.startEngine();
         c.gas(1);
         c.turnLeft();
@@ -36,7 +38,7 @@ public class VehicleTest {
 
     @Test
     public void turnRight() {                                                                                   //kolla höger
-        Vehicle c = new Saab95(0,0,0);
+        IVehicle c = VehicleFactory.createSaab95(0,0,0);
         c.startEngine();
         c.gas(1);
         c.turnRight();
@@ -47,7 +49,7 @@ public class VehicleTest {
 
     @Test
     public void gas() {
-        Vehicle c = new Volvo240(0,0,0);
+        IVehicle c = VehicleFactory.createSaab95(0,0,0);
         c.startEngine();
         double d = c.getCurrentSpeed();
         c.gas(1);
@@ -55,7 +57,7 @@ public class VehicleTest {
     }
     @Test
     public void brake() {
-        Vehicle c = new Volvo240(0,0,0);
+        IVehicle c = VehicleFactory.createVolvo240(0,0,0);
         c.startEngine();
         c.gas(1);
         double speed = c.getCurrentSpeed();
@@ -64,11 +66,12 @@ public class VehicleTest {
         System.out.println(c.getCurrentSpeed());
         assertTrue(c.getCurrentSpeed()<speed);
     }
+    /*
     @Test
     public void transport(){
-        TransportTruck t = new TransportTruck(0, 0, 0);
-        Vehicle c = new Volvo240(0,0,0);
-        Vehicle c2 = new Volvo240(100, 100, 100);
+        IVehicle t = VehicleFactory.createTransportTruck(0,0,0);
+        IVehicle c = VehicleFactory.createSaab95(0,0,0);
+        IVehicle c2 = VehicleFactory.createVolvo240(0,0,0);
 
         for (int i = 0; i < 1000; i++) {
             if (!t.isLowest()){
@@ -76,7 +79,7 @@ public class VehicleTest {
             }
         }
 
-        t.addToStorage(c);
+        (IStorage) t.addToStorage(c);
         t.addToStorage(c2);
 
         for (int i = 0; i < 1000; i++) {
@@ -131,5 +134,7 @@ public class VehicleTest {
         assertTrue(sab1.getX()>sab2.getX());
     }
 
- */
+     */
+
+
 }

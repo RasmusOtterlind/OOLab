@@ -12,7 +12,19 @@ import java.util.ArrayList;
  */
 
 public class CarController {
-    // member fields:
+    /**
+     * buttons
+     */
+    private JButton gasButton = new JButton("Gas");
+    private JButton brakeButton = new JButton("Brake");
+    private JButton turboOnButton = new JButton("Saab Turbo on");
+    private JButton turboOffButton = new JButton("Saab Turbo off");
+    private JButton liftBedButton = new JButton("Scania Lift Bed");
+    private JButton lowerBedButton = new JButton("Lower Lift Bed");
+    private JButton startButton = new JButton("Start all cars");
+    private JButton stopButton = new JButton("Stop all cars");
+    private ArrayList<JButton> buttonsList = new ArrayList<>();
+    // member fields
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 13;
@@ -25,28 +37,39 @@ public class CarController {
     // A list of cars, modify if needed
     private ArrayList<IVehicle> vehicles = new ArrayList<>();
 
+    public CarController() {
+        buttonsList.add(gasButton);
+        buttonsList.add(brakeButton);
+        buttonsList.add(turboOnButton);
+        //buttonsList.add(startButton);
+        buttonsList.add(turboOffButton);
+        buttonsList.add(liftBedButton);
+        buttonsList.add(lowerBedButton);
+        //buttonsList.add(stopButton);
+    }
 
-
-    //methods:
+//methods:
 
     public static void main(String[] args) {
         // Instance of this class
         CarController cc = new CarController();
 
-        cc.vehicles.add(VehicleFactory.createSabb95(100,100,0));
+        cc.vehicles.add(VehicleFactory.createSaab95(100,100,0));
         cc.vehicles.add(VehicleFactory.createVolvo240(100,200,0));
         cc.vehicles.add(VehicleFactory.createScaniaTruck(100,300,0));
 
         // Start a new view and send a reference of self
-        cc.frame = new CarView("CarSim 1.0");
-        cc.frame.gasButton.addActionListener(e -> cc.gas(cc.frame.getGasAmount()));
-        cc.frame.startButton.addActionListener(e -> cc.startCars());
-        cc.frame.brakeButton.addActionListener(e -> cc.brake(cc.frame.getGasAmount()));
-        cc.frame.turboOnButton.addActionListener(e ->cc.turboOn());
-        cc.frame.turboOffButton.addActionListener(e -> cc.turboOff());
-        cc.frame.liftBedButton.addActionListener(e -> cc.liftBed());
-        cc.frame.lowerBedButton.addActionListener(e ->cc.lowerBed());
-        cc.frame.stopButton.addActionListener(e -> cc.stopCars());
+        cc.frame = new CarView("CarSim 1.0",cc.buttonsList);
+        cc.frame.add(cc.startButton);
+        cc.frame.add(cc.stopButton);
+        cc.gasButton.addActionListener(e -> cc.gas(cc.frame.getGasAmount()));
+        cc.startButton.addActionListener(e -> cc.startCars());
+        cc.brakeButton.addActionListener(e -> cc.brake(cc.frame.getGasAmount()));
+        cc.turboOnButton.addActionListener(e ->cc.turboOn());
+        cc.turboOffButton.addActionListener(e -> cc.turboOff());
+        cc.liftBedButton.addActionListener(e -> cc.liftBed());
+        cc.lowerBedButton.addActionListener(e ->cc.lowerBed());
+        cc.stopButton.addActionListener(e -> cc.stopCars());
 
         // Start the timer
         cc.timer.start();
@@ -70,53 +93,53 @@ public class CarController {
     }
 
     // Calls the gas method for each car once
-    void gas(int amount) {
+    private void gas(int amount) {
         double gas = ((double) amount) / 100;
         for (IVehicle car : vehicles
                 ) {
             car.gas(gas);
         }
     }
-    void startCars(){
+    private void startCars(){
         for(IVehicle car : vehicles){
             car.startEngine();
         }
     }
-   void brake(int amount){
+   private void brake(int amount){
        double brake = ((double) amount) / 100;
         for (IVehicle car : vehicles){
             car.brake(brake);
         }
    }
-   void turboOn(){
+   private void turboOn(){
         for(IVehicle vehicle : vehicles) {
             if (vehicle instanceof ITurbo) {
                 ((ITurbo)vehicle).setTurboOn();
             }
         }
    }
-   void turboOff(){
+   private void turboOff(){
        for(IVehicle vehicle : vehicles) {
            if (vehicle instanceof ITurbo) {
                ((ITurbo)vehicle).setTurboOff();
            }
        }
    }
-   void liftBed(){
+   private void liftBed(){
         for(IVehicle vehicle : vehicles){
             if (vehicle instanceof IFlatBed) {
                 ((IFlatBed)vehicle).raiseFlatBed();
             }
         }
    }
-    void lowerBed(){
+    private void lowerBed(){
         for(IVehicle vehicle : vehicles){
             if (vehicle instanceof IFlatBed) {
                 ((IFlatBed)vehicle).lowerFlatBed();
             }
         }
     }
-    void stopCars(){
+    private void stopCars(){
         for(IVehicle vehicle : vehicles){
             vehicle.stopEngine();
         }

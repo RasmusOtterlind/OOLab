@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * A subclass to Vehicle. Implements interface IStorage.
  */
- class TransportTruck extends Vehicle implements IStorage,IFlatBed{
+public class TransportTruck extends Vehicle implements IStorage,IFlatBed{
     /**
      *  Composition: Creating new object flatbed to reach method in the class Flatbed with the help of delegation.
      */

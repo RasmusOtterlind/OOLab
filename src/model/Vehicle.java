@@ -41,12 +41,12 @@ import java.awt.*;
     }
     private void setCurrentSpeed(double currentSpeed) {this.currentSpeed = currentSpeed;}
     double getEnginePower() {return enginePower;}
-    double getCurrentSpeed() {return currentSpeed;}
+    public double getCurrentSpeed() {return currentSpeed;}
     void setColor(Color clr) {color = clr;}
     Color getColor() {return color;}
     double getSize() {return size;}
     boolean getEngineRunning(){ return engineRunning;}
-    boolean getIsLoadedOn(){return isLoadedOn;}
+    public boolean getIsLoadedOn(){return isLoadedOn;}
     public String getModelName() { return modelName;}
 
     //private void setLoadedOn(){isLoadedOn = !isLoadedOn;}
