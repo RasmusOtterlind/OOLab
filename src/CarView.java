@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * TODO: Write more actionListeners and wire the rest of the buttons
  **/
 
-public class CarView extends JFrame {
+public class CarView extends JFrame{
     private static final int X = 800; //2880 x 1800
     private static final int Y = 800;
     // The controller member

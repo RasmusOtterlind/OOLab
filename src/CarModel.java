@@ -95,13 +95,13 @@ public class CarModel {
     public void addVehicle(){
         double rand = Math.random()*10;
         if(rand>=0 &&rand<4){
-            vehicles.add(VehicleFactory.createVolvo240(100,vehicles.size()*60,0));
+            vehicles.add(VehicleFactory.createVolvo240(100,vehicles.size()*60+1,0));
         }
         else if (rand>=4&&rand<=7){
-            vehicles.add(VehicleFactory.createScaniaTruck(100,vehicles.size()*60,0));
+            vehicles.add(VehicleFactory.createScaniaTruck(100,vehicles.size()*60+1,0));
         }
         else {
-            vehicles.add(VehicleFactory.createSaab95(100,vehicles.size()*60,0));
+            vehicles.add(VehicleFactory.createSaab95(100,vehicles.size()*60+1,0));
         }
     }
     public void removeVehicle(){
@@ -110,7 +110,7 @@ public class CarModel {
         }
     }
     private boolean checkIfOut(IVehicle entity){
-        if((entity.getX()<=0|| entity.getX()>=700) || entity.getY()<=30 || entity.getY()>=500){
+        if((entity.getX()<=0|| entity.getX()>=700) || entity.getY()<=0 || entity.getY()>=500){
             return true;
         }
         return false;
@@ -131,7 +131,6 @@ public class CarModel {
         }
         return objectRenderInfos;
     }
-
     private BufferedImage getVehicleImg(IVehicle vehicle){
         switch (vehicle.getModelName()){
             case "Volvo240":
@@ -147,7 +146,9 @@ public class CarModel {
         listeners.add(listener);
     }
     private void  notifyListeners(){
-        listeners.forEach(AnimateListener::onUpdate);
+        for (AnimateListener listener: listeners){
+            listener.onUpdate();
+        }
     }
 
 }

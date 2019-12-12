@@ -53,6 +53,7 @@ public class CarController implements AnimateListener{
         startButton.setForeground(Color.green);
         frame.add(startButton);
         frame.add(stopButton);
+        model.addListener(this);
 
     }
 
