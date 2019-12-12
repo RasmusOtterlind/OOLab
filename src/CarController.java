@@ -1,9 +1,8 @@
-import model.*;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /*
@@ -12,28 +11,26 @@ import java.util.ArrayList;
 * modifying the model state and the updating the view.
  */
 
-public class CarController {
+public class CarController implements AnimateListener{
     /**
      * buttons
      */
+    private JSpinner gasSpinner = new JSpinner();
+    private JPanel gasPanel = new JPanel();
+    private int gasAmount = 0;
+    private JLabel gasLabel = new JLabel("Amount of gas");
     private JButton gasButton = new JButton("Gas");
     private JButton brakeButton = new JButton("Brake");
     private JButton turboOnButton = new JButton("Saab Turbo on");
     private JButton turboOffButton = new JButton("Saab Turbo off");
-    private JButton liftBedButton = new JButton("Scania Lift Bed");
-    private JButton lowerBedButton = new JButton("Lower Lift Bed");
+    private JButton liftBedButton = new JButton("Lift Bed");
+    private JButton lowerBedButton = new JButton("Lower Bed");
     private JButton startButton = new JButton("Start all cars");
     private JButton stopButton = new JButton("Stop all cars");
+    private JButton addVehicleButton = new JButton("Add a random vehicle");
+    private JButton removeVehicleButton = new JButton("Remove last added vehicle");
     private ArrayList<JButton> buttonsList = new ArrayList<>();
-    // member fields
-    // The delay (ms) corresponds to 20 updates a sec (hz)
-    //private final int delay = 13;
-    // The timer is started with an listener (see below) that executes the statements
-    // each step between delays.
-    //private Timer timer = new Timer(delay, new TimerListener());
-    // The frame that represents this instance View of the MVC pattern
     CarView frame;
-    // A list of cars, modify if needed
     private CarModel model;
     public CarController(CarModel model) {
         this.model = model;
@@ -43,61 +40,64 @@ public class CarController {
         buttonsList.add(turboOffButton);
         buttonsList.add(liftBedButton);
         buttonsList.add(lowerBedButton);
-        gasButton.addActionListener(e -> model.gas(frame.getGasAmount()));
+        buttonsList.add(addVehicleButton);
+        buttonsList.add(removeVehicleButton);
+        addActionListeners();
+        frame = new CarView("God game x2000",buttonsList);
+        addGasSpinner();
+        stopButton.setPreferredSize(new Dimension(frame.getWidth()/5-15,200));
+        stopButton.setBackground(Color.red);
+        stopButton.setForeground(Color.ORANGE);
+        startButton.setPreferredSize(new Dimension(frame.getWidth()/5-15,200));
+        startButton.setBackground(Color.blue);
+        startButton.setForeground(Color.green);
+        frame.add(startButton);
+        frame.add(stopButton);
+
+    }
+
+    /**
+     * adds the JSpinner to the frame needed to gas
+     */
+    private void addGasSpinner(){SpinnerModel spinnerModel =
+            new SpinnerNumberModel(0, //initial value
+                    0, //min
+                    100, //max
+                    1);//step
+        gasSpinner = new JSpinner(spinnerModel);
+        gasSpinner.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                gasAmount = (int) ((JSpinner)e.getSource()).getValue();
+            }});
+
+        gasPanel.setLayout(new BorderLayout());
+        gasPanel.add(gasLabel, BorderLayout.PAGE_START);
+        gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
+        frame.add(gasPanel);
+    }
+
+    /**
+     * adds actionListeners to the buttons
+     */
+    private void addActionListeners(){
+        gasButton.addActionListener(e -> model.gas(gasAmount));
         startButton.addActionListener(e -> model.startCars());
-        brakeButton.addActionListener(e -> model.brake(frame.getGasAmount()));
+        brakeButton.addActionListener(e -> model.brake(gasAmount));
         turboOnButton.addActionListener(e ->model.turboOn());
         turboOffButton.addActionListener(e -> model.turboOff());
         liftBedButton.addActionListener(e -> model.liftBed());
         lowerBedButton.addActionListener(e ->model.lowerBed());
         stopButton.addActionListener(e -> model.stopCars());
-        frame = new CarView("hej",buttonsList);
-        stopButton.setPreferredSize(new Dimension(frame.getWidth()/5-15,200));
-        startButton.setPreferredSize(new Dimension(frame.getWidth()/5-15,200));
-        frame.add(startButton);
-        frame.add(stopButton);
+        addVehicleButton.addActionListener(e -> model.addVehicle());
+        removeVehicleButton.addActionListener(e -> model.removeVehicle());
     }
-
+    /**
+     * updates the view by sending the x and y positions paired with pictures to the view
+     */
+    @Override
+    public void onUpdate() {
+        frame.onUpdate(model.createObjectRenderInfos());
+    }
 //methods:
-/*
-    public static void main(String[] args) {
-        // Instance of this class
-        CarController cc = new CarController();
-
-        cc.vehicles.add(VehicleFactory.createSaab95(100,100,0));
-        cc.vehicles.add(VehicleFactory.createVolvo240(100,200,0));
-        cc.vehicles.add(VehicleFactory.createScaniaTruck(100,300,0));
-
-        // Start a new view and send a reference of self
-        //cc.frame = new CarView("CarSim 1.0",cc.buttonsList);
-
-
-
-        // Start the timer
-        cc.timer.start();
-    }
-
- */
-
-    /* Each step the TimerListener moves all the cars in the list and tells the
-    * view to update its images. Change this method to your needs.
-    * *//*
-    private class TimerListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            for (IVehicle car : vehicles){
-                car.move();
-                changeDirectionIfOut(car);
-                //int x = (int) Math.round(car.getX());
-                //int y = (int) Math.round(car.getY());
-                // repaint() calls the paintComponent method of the panel
-                frame.drawPanel.repaint();
-            }
-            frame.drawPanel.moveIt(vehicles);
-        }
-    }
-    */
-
-    // Calls the gas method for each car once
-
 
 }

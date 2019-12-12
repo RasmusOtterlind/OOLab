@@ -3,22 +3,37 @@ import model.ITurbo;
 import model.IVehicle;
 import model.VehicleFactory;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.nio.channels.Channel;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class CarModel {
     private ArrayList<IVehicle> vehicles = new ArrayList<>();
     private ArrayList<AnimateListener> listeners = new ArrayList<>();
-
-    public CarModel(){
-        vehicles.add(VehicleFactory.createVolvo240(100,200,0));
-    }
-
     private final int delay = 13;
     private Timer timer = new Timer(delay, new TimerListener());
+    private BufferedImage volvoImage;
+    private BufferedImage saabImage;
+    private BufferedImage scaniaImage;
+
+    public CarModel(){
+        try {
+            saabImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg"));
+            scaniaImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Scania.jpg"));
+            volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
+        } catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }
+        timer.start();
+    }
+
+
     public void gas(int amount) {
         double gas = ((double) amount) / 100;
         for (IVehicle car : vehicles
@@ -77,6 +92,23 @@ public class CarModel {
             vehicle.setDirection(vehicle.getDirection()+Math.PI);
         }
     }
+    public void addVehicle(){
+        double rand = Math.random()*10;
+        if(rand>=0 &&rand<4){
+            vehicles.add(VehicleFactory.createVolvo240(100,vehicles.size()*60,0));
+        }
+        else if (rand>=4&&rand<=7){
+            vehicles.add(VehicleFactory.createScaniaTruck(100,vehicles.size()*60,0));
+        }
+        else {
+            vehicles.add(VehicleFactory.createSaab95(100,vehicles.size()*60,0));
+        }
+    }
+    public void removeVehicle(){
+        if(!vehicles.isEmpty()){
+            vehicles.remove(vehicles.size()-1);
+        }
+    }
     private boolean checkIfOut(IVehicle entity){
         if((entity.getX()<=0|| entity.getX()>=700) || entity.getY()<=30 || entity.getY()>=500){
             return true;
@@ -88,13 +120,28 @@ public class CarModel {
             for (IVehicle vehicle : vehicles){
                 vehicle.move();
                 changeDirectionIfOut(vehicle);
-                //int x = (int) Math.round(car.getX());
-                //int y = (int) Math.round(car.getY());
-                // repaint() calls the paintComponent method of the panel
-
             }
            notifyListeners();
         }
+    }
+    public ArrayList<ObjectRenderInfo> createObjectRenderInfos(){
+        ArrayList<ObjectRenderInfo> objectRenderInfos = new ArrayList<>();
+        for (IVehicle vehicle : vehicles){
+            objectRenderInfos.add(new ObjectRenderInfo(new Point((int)vehicle.getX(),(int)vehicle.getY()),getVehicleImg(vehicle)));
+        }
+        return objectRenderInfos;
+    }
+
+    private BufferedImage getVehicleImg(IVehicle vehicle){
+        switch (vehicle.getModelName()){
+            case "Volvo240":
+                return volvoImage;
+            case "Saab95":
+                return saabImage;
+            case "Scania":
+                return scaniaImage;
+        }
+        return null;
     }
     public void addListener(AnimateListener listener){
         listeners.add(listener);
