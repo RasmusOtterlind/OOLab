@@ -11,6 +11,7 @@ public class CarSpeedFrame extends JFrame {
     private static int y = 400;
     private ArrayList<JButton> speedButtons = new ArrayList<>();
     public CarSpeedFrame(){
+        this.setTitle("Car Speed");
         this.setPreferredSize(new Dimension(x, y));
         this.pack();
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));

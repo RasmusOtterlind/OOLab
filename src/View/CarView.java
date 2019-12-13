@@ -101,7 +101,7 @@ public class CarView extends JFrame{
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
         this.add(drawPanel);
         controlPanel.setLayout(new GridLayout(2,5));
-        controlPanel.setPreferredSize(new Dimension((X), 200));
+        //controlPanel.setPreferredSize(new Dimension((X), 200));
         controlPanel.add(gasButton);
         controlPanel.add(brakeButton);
         controlPanel.add(liftBedButton);

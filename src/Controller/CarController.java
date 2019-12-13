@@ -22,7 +22,6 @@ public class CarController implements AnimateListener {
         addActionListeners();
         model.addListener(this);
     }
-
     /**
      * adds actionListeners to the buttons
      */
@@ -37,7 +36,6 @@ public class CarController implements AnimateListener {
         frame.getStopButton().addActionListener(e -> model.stopCars());
         frame.getAddVehicleButton().addActionListener(e -> model.addVehicle());
         frame.getRemoveVehicleButton().addActionListener(e -> model.removeVehicle());
-
     }
     /**
      * updates the view by sending the x and y positions paired with pictures to the view
