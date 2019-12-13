@@ -1,15 +1,16 @@
+package model;
+
+import Controller.AnimateListener;
+import View.ObjectRenderInfo;
 import model.IFlatBed;
 import model.ITurbo;
 import model.IVehicle;
 import model.VehicleFactory;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class CarModel {
@@ -17,19 +18,10 @@ public class CarModel {
     private ArrayList<AnimateListener> listeners = new ArrayList<>();
     private final int delay = 13;
     private Timer timer = new Timer(delay, new TimerListener());
-    private BufferedImage volvoImage;
-    private BufferedImage saabImage;
-    private BufferedImage scaniaImage;
+
 
     public CarModel(){
-        try {
-            saabImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg"));
-            scaniaImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Scania.jpg"));
-            volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
-        } catch (IOException ex)
-        {
-            ex.printStackTrace();
-        }
+
         timer.start();
     }
 
@@ -94,14 +86,14 @@ public class CarModel {
     }
     public void addVehicle(){
         double rand = Math.random()*10;
-        if(rand>=0 &&rand<4){
-            vehicles.add(VehicleFactory.createVolvo240(100,vehicles.size()*60+1,0));
-        }
-        else if (rand>=4&&rand<=7){
-            vehicles.add(VehicleFactory.createScaniaTruck(100,vehicles.size()*60+1,0));
-        }
-        else {
-            vehicles.add(VehicleFactory.createSaab95(100,vehicles.size()*60+1,0));
+        if(!(vehicles.size()>=9)) {
+            if (rand >= 0 && rand < 4) {
+                vehicles.add(VehicleFactory.createVolvo240(100, vehicles.size() * 60 + 1, 0));
+            } else if (rand >= 4 && rand <= 7) {
+                vehicles.add(VehicleFactory.createScaniaTruck(100, vehicles.size() * 60 + 1, 0));
+            } else {
+                vehicles.add(VehicleFactory.createSaab95(100, vehicles.size() * 60 + 1, 0));
+            }
         }
     }
     public void removeVehicle(){
@@ -127,21 +119,12 @@ public class CarModel {
     public ArrayList<ObjectRenderInfo> createObjectRenderInfos(){
         ArrayList<ObjectRenderInfo> objectRenderInfos = new ArrayList<>();
         for (IVehicle vehicle : vehicles){
-            objectRenderInfos.add(new ObjectRenderInfo(new Point((int)vehicle.getX(),(int)vehicle.getY()),getVehicleImg(vehicle)));
+            Point p = new Point((int)vehicle.getX(),(int)vehicle.getY());
+            objectRenderInfos.add(new ObjectRenderInfo(p,vehicle.getCurrentSpeed(),vehicle.getModelName()));
         }
         return objectRenderInfos;
     }
-    private BufferedImage getVehicleImg(IVehicle vehicle){
-        switch (vehicle.getModelName()){
-            case "Volvo240":
-                return volvoImage;
-            case "Saab95":
-                return saabImage;
-            case "Scania":
-                return scaniaImage;
-        }
-        return null;
-    }
+
     public void addListener(AnimateListener listener){
         listeners.add(listener);
     }

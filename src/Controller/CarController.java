@@ -1,3 +1,7 @@
+package Controller;
+
+import View.CarView;
+import model.CarModel;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -15,11 +19,10 @@ import java.util.Map;
 * modifying the model state and the updating the view.
  */
 
-public class CarController implements AnimateListener{
+public class CarController implements AnimateListener {
     /**
-     * buttons
+     * The main frame for the graphics of the cars and buttons
      */
-
     CarView frame;
     private CarModel model;
     public CarController(CarModel model) {

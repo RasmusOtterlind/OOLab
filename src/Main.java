@@ -1,7 +1,8 @@
-import java.awt.*;
+import Controller.CarController;
+import model.CarModel;
 
 /**
- * ignore this
+ * the main application
  */
 public class Main{
     public static void main(String[] args){

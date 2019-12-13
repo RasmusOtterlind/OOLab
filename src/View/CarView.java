@@ -1,3 +1,5 @@
+package View;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -140,9 +142,10 @@ public class CarView extends JFrame{
         this.add(gasPanel);
     }
 
-
     public void onUpdate(ArrayList<ObjectRenderInfo> objectRenderInfos) {
         drawPanel.moveIt(objectRenderInfos);
+        carSpeedLabel.createLabelsAndAdd(objectRenderInfos);
+
         repaint();
     }
 }
