@@ -30,7 +30,7 @@ public class CarView extends JFrame{
     private JButton stopButton = new JButton("Stop all cars");
     private JButton addVehicleButton = new JButton("Add a random vehicle");
     private JButton removeVehicleButton = new JButton("Remove last added vehicle");
-
+    private CarSpeedLabel carSpeedLabel = new CarSpeedLabel();
     private DrawPanel drawPanel = new DrawPanel(X, Y-240);
     private JPanel controlPanel = new JPanel();
     public int getGasAmount(){return gasAmount; }
@@ -84,8 +84,8 @@ public class CarView extends JFrame{
         startButton.setPreferredSize(new Dimension(this.getWidth()/5-15,200));
         startButton.setBackground(Color.blue);
         startButton.setForeground(Color.green);
-        addGasSpinner();
         initComponents(framename);
+        addGasSpinner();
     }
 
 
@@ -96,8 +96,6 @@ public class CarView extends JFrame{
         this.setPreferredSize(new Dimension(X,Y));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
         this.add(drawPanel);
-
-        this.add(gasSpinner);
         controlPanel.setLayout(new GridLayout(2,5));
         controlPanel.setPreferredSize(new Dimension((X), 200));
         controlPanel.add(gasButton);
@@ -110,13 +108,6 @@ public class CarView extends JFrame{
         controlPanel.add(stopButton);
         controlPanel.add(addVehicleButton);
         controlPanel.add(removeVehicleButton);
-
-        /*
-        for (int i = 0;i<buttonsList.size();i++){
-            controlPanel.add(buttonsList.get(i),i);
-        }
-
-         */
         controlPanel.setPreferredSize(new Dimension((X/2)+4, 200));
         this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
