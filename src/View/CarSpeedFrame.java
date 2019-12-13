@@ -1,14 +1,16 @@
 package View;
 
+import model.ObjectRenderInfo;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class CarSpeedLabel extends JFrame {
+public class CarSpeedFrame extends JFrame {
     private static int x = 250;
     private static int y = 400;
     private ArrayList<JButton> speedButtons = new ArrayList<>();
-    public CarSpeedLabel(){
+    public CarSpeedFrame(){
         this.setPreferredSize(new Dimension(x, y));
         this.pack();
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));

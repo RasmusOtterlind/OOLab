@@ -1,6 +1,6 @@
 package model;
 
-public interface ITurbo extends IVehicle {
+public interface ITurbo {
      void setTurboOn();
      void setTurboOff();
 }

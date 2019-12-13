@@ -3,15 +3,6 @@ package Controller;
 import View.CarView;
 import model.CarModel;
 
-import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -23,7 +14,7 @@ public class CarController implements AnimateListener {
     /**
      * The main frame for the graphics of the cars and buttons
      */
-    CarView frame;
+    private CarView frame;
     private CarModel model;
     public CarController(CarModel model) {
         this.model = model;

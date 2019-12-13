@@ -1,6 +1,8 @@
 package View;
 
 
+import model.ObjectRenderInfo;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -12,14 +14,12 @@ import javax.swing.*;
 
 public class DrawPanel extends JPanel{
 
-    // Just a single image, TODO: Generalize
-    //ArrayList<BufferedImage> images = new ArrayList<>();
-    // To keep track of a snigel cars position
+
+
     private ArrayList<ObjectRenderInfo>  objectRenderInfos = new ArrayList<>();
     private BufferedImage volvoImage;
     private BufferedImage saabImage;
     private BufferedImage scaniaImage;
-    //Point volvoPoint = new Point(1,2);
     // TODO: Make this genereal for all cars
     void moveIt(ArrayList<ObjectRenderInfo> vehicles){
         objectRenderInfos = vehicles;

@@ -1,6 +1,6 @@
 package model;
 
-public interface IFlatBed extends IVehicle {
+public interface IFlatBed {
     void raiseFlatBed();
     void lowerFlatBed();
     boolean isMax();

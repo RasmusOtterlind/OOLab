@@ -1,5 +1,7 @@
 package View;
 
+import model.ObjectRenderInfo;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -32,7 +34,7 @@ public class CarView extends JFrame{
     private JButton stopButton = new JButton("Stop all cars");
     private JButton addVehicleButton = new JButton("Add a random vehicle");
     private JButton removeVehicleButton = new JButton("Remove last added vehicle");
-    private CarSpeedLabel carSpeedLabel = new CarSpeedLabel();
+    private CarSpeedFrame carSpeedLabel = new CarSpeedFrame();
     private DrawPanel drawPanel = new DrawPanel(X, Y-240);
     private JPanel controlPanel = new JPanel();
     public int getGasAmount(){return gasAmount; }
@@ -145,7 +147,6 @@ public class CarView extends JFrame{
     public void onUpdate(ArrayList<ObjectRenderInfo> objectRenderInfos) {
         drawPanel.moveIt(objectRenderInfos);
         carSpeedLabel.createLabelsAndAdd(objectRenderInfos);
-
         repaint();
     }
 }

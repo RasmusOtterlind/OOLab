@@ -1,11 +1,6 @@
 package model;
 
 import Controller.AnimateListener;
-import View.ObjectRenderInfo;
-import model.IFlatBed;
-import model.ITurbo;
-import model.IVehicle;
-import model.VehicleFactory;
 
 import javax.swing.*;
 import java.awt.*;
